@@ -18,10 +18,10 @@ export default function Podcast() {
       for (const ext of exts) {
         // Buscar cualquier archivo que termine en num+ext
         const files = [
-          `/src/data/episodes/${slug}${ext}`,
-          `/src/data/episodes/${num}${ext}`,
-          `/src/data/episodes/ep_${num}${ext}`,
-          `/src/data/episodes/Silenciar_la_conciencia_por_miedo_a_la_exclusión${num}${ext}`
+          `${import.meta.env.BASE_URL}episodes/${slug}${ext}`,
+          `${import.meta.env.BASE_URL}episodes/${num}${ext}`,
+          `${import.meta.env.BASE_URL}episodes/ep_${num}${ext}`,
+          `${import.meta.env.BASE_URL}episodes/Silenciar_la_conciencia_por_miedo_a_la_exclusión${num}${ext}`
         ];
         for (const url of files) {
           const res = await fetch(url, { method: "HEAD" });

@@ -9,7 +9,7 @@ export function EpisodeMarkdown({ slug }: EpisodeMarkdownProps) {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    fetch(`/src/data/episodes/${slug}.md`)
+    fetch(`${import.meta.env.BASE_URL}episodes/${slug}.md`)
       .then((res) => res.text())
       .then(setContent);
   }, [slug]);
