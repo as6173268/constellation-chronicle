@@ -1,12 +1,13 @@
 import { Navigation } from "@/components/Navigation";
 import { EpisodeCard } from "@/components/EpisodeCard";
+
 import { episodes } from "@/data/episodes";
+import { EpisodeMarkdown } from "@/components/EpisodeMarkdown";
 
 export default function Podcast() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
       <main className="pt-24 pb-20">
         <div className="container mx-auto px-4">
           {/* Header */}
@@ -19,17 +20,10 @@ export default function Podcast() {
             </p>
           </div>
 
-          {/* Season Filter */}
-          <div className="flex items-center gap-4 mb-8 border-b border-border pb-4">
-            <button className="text-sm font-medium text-primary border-b-2 border-primary pb-2 -mb-[17px]">
-              Temporada 1
-            </button>
-            <button className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors pb-2 -mb-[17px]">
-              Archivo
-            </button>
-            <button className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors pb-2 -mb-[17px]">
-              Especiales
-            </button>
+          {/* Episodio Markdown de ejemplo */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-semibold mb-4">Episodio Destacado</h2>
+            <EpisodeMarkdown slug="ep_001" />
           </div>
 
           {/* Episodes Grid */}
