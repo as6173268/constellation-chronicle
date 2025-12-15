@@ -10,7 +10,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "sync-episodes": "node sync-episodes.cjs"
+    "sync-episodes": "node sync-episodes.cjs",
+    "deploy": "npm install --global gh-pages && npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

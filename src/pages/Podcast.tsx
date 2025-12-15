@@ -7,33 +7,9 @@ import { useEffect, useState } from "react";
 
 export default function Podcast() {
   // Lógica para enlazar dinámicamente el audio
-  const slug = "ep_001";
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  useEffect(() => {
-    // Buscar archivo de audio que termine con el mismo número que el slug
-    const num = slug.match(/(\d+)$/)?.[1];
-    if (!num) return;
-    const exts = [".mp3", ".m4a"];
-    const tryAudio = async () => {
-      for (const ext of exts) {
-        // Buscar cualquier archivo que termine en num+ext
-        const files = [
-          `${import.meta.env.BASE_URL}episodes/${slug}${ext}`,
-          `${import.meta.env.BASE_URL}episodes/${num}${ext}`,
-          `${import.meta.env.BASE_URL}episodes/ep_${num}${ext}`,
-          `${import.meta.env.BASE_URL}episodes/Silenciar_la_conciencia_por_miedo_a_la_exclusión${num}${ext}`
-        ];
-        for (const url of files) {
-          const res = await fetch(url, { method: "HEAD" });
-          if (res.ok) {
-            setAudioUrl(url);
-            return;
-          }
-        }
-      }
-    };
-    tryAudio();
-  }, [slug]);
+  // Usar directamente el archivo real
+  const audioFileName = "Silenciar_la_conciencia_por_miedo_a_la_exclusión001.m4a";
+  const audioUrl = `${import.meta.env.BASE_URL}episodes/${audioFileName}`;
 
   return (
     <div className="min-h-screen">
@@ -53,13 +29,21 @@ export default function Podcast() {
           {/* Episodio Markdown de ejemplo */}
           <div className="mb-12">
             <h2 className="font-display text-2xl font-semibold mb-4">Episodio Destacado</h2>
-            {audioUrl && (
-              <audio controls className="w-full mb-6">
-                <source src={audioUrl} />
+            <div className="mb-6">
+              <audio
+                key={audioUrl}
+                controls
+                controlsList="nodownload"
+                preload="auto"
+                className="w-full"
+                src={audioUrl}
+              >
                 Tu navegador no soporta la reproducción de audio.
               </audio>
-            )}
-            <EpisodeMarkdown slug={slug} />
+              <span className="inline-block mt-2 px-3 py-1 text-xs bg-accent/30 border border-border rounded-full text-muted-foreground">
+                Archivo: {audioFileName}
+              </span>
+            </div>
           </div>
 
           {/* Episodes Grid */}
