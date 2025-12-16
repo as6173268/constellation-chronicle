@@ -3,61 +3,95 @@
 import { AgentInput, AgentOutput, AgentError } from "./types";
 import { PROMPT_BASE } from "./prompts";
 
+const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+
 /**
- * Ejecuta el agente de análisis crítico
+ * Verifica si el agente está configurado con API real
+ */
+export function isAgentConfigured(): boolean {
+  return !!GOOGLE_API_KEY;
+}
+
+/**
+ * Ejecuta el agente de análisis crítico usando Google Gemini
  * No dialoga - solo analiza y genera fricción
  */
 export async function runAgent(input: AgentInput): Promise<AgentOutput> {
   try {
-    // TODO: Integrar con API real (OpenAI, Anthropic, etc.)
-    // Por ahora, retorna estructura mock para desarrollo
-    
-    const mockOutput: AgentOutput = {
-      affirmation: `El corpus sostiene que "${input.angle}" es una estructura de control.`,
-      contradiction: `Sin embargo, la misma estructura que se critica es la que permite formular la crítica.`,
-      openQuestion: `¿Es posible salir del sistema sin usar las herramientas del sistema?`,
-      suggestedNodes: ["control", "legitimidad", "conciencia"]
-    };
-
-    // Simular latencia de API
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    return mockOutput;
-
-    // Implementación futura con API real:
-    /*
-    const payload = {
-      model: "gpt-4",
-      messages: [
-        {
-          role: "system",
-          content: PROMPT_BASE
-        },
-        {
-          role: "user",
-          content: JSON.stringify(input)
-        }
-      ],
-      response_format: { type: "json_object" }
-    };
-
-    const res = await fetch("/api/agent", {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!res.ok) {
-      throw new Error("El agente ha decidido no colaborar hoy.");
+    // Si no hay API key, lanzar error
+    if (!GOOGLE_API_KEY) {
+      throw new Error("API_KEY_MISSING");
     }
 
-    const data = await res.json();
-    return JSON.parse(data.choices[0].message.content);
-    */
+    // Preparar el prompt para Gemini
+    const prompt = `${PROMPT_BASE}
+
+Contexto de análisis:
+- Corpus: ${input.corpus.substring(0, 500)}...
+- Ángulo: ${input.angle}
+
+Analiza este contexto y responde SOLO con un objeto JSON válido siguiendo este formato exacto:
+{
+  "affirmation": "Una afirmación del corpus o contexto",
+  "contradiction": "Una contradicción estructural o conceptual",
+  "openQuestion": "Una pregunta socrática sin respuesta fácil",
+  "suggestedNodes": ["nodo1", "nodo2"]
+}`;
+
+    const response = await fetch(`${GEMINI_API_URL}?key=${GOOGLE_API_KEY}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{
+            text: prompt
+          }]
+        }],
+        generationConfig: {
+          temperature: 0.9,
+          topK: 40,
+          topP: 0.95,
+          maxOutputTokens: 1024,
+        }
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(`Gemini API error: ${response.status} - ${JSON.stringify(errorData)}`);
+    }
+
+    const data = await response.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    
+    if (!text) {
+      throw new Error("No se recibió respuesta del agente");
+    }
+
+    // Extraer JSON del texto (Gemini a veces incluye markdown)
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      throw new Error("El agente no devolvió JSON válido");
+    }
+
+    const output: AgentOutput = JSON.parse(jsonMatch[0]);
+    return output;
+
   } catch (error) {
+    console.error("Error en runAgent:", error);
+    
+    // Error específico de API key faltante
+    if (error instanceof Error && error.message === "API_KEY_MISSING") {
+      const err: AgentError = {
+        message: "Agente no configurado. Se requiere VITE_GOOGLE_API_KEY.",
+        code: "API_KEY_MISSING"
+      };
+      throw err;
+    }
+    
     const err: AgentError = {
       message: error instanceof Error ? error.message : "Error desconocido",
       code: "AGENT_ERROR"
@@ -72,7 +106,6 @@ export async function runAgent(input: AgentInput): Promise<AgentOutput> {
 export async function quickAnalysis(text: string, angle: string): Promise<AgentOutput> {
   return runAgent({
     corpus: text,
-    narrativeMatrix: {},
     angle
   });
 }

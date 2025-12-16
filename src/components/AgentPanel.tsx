@@ -1,8 +1,9 @@
 import { useAgent } from "@/hooks/useAgent";
+import { isAgentConfigured } from "@/ai/agent";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertCircle, Brain, Loader2, RefreshCw } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertCircle, Brain, Loader2, RefreshCw, AlertTriangle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface AgentPanelProps {
   context: {
@@ -19,6 +20,7 @@ interface AgentPanelProps {
  */
 export default function AgentPanel({ context }: AgentPanelProps) {
   const { analyze, output, loading, error, reset } = useAgent();
+  const isConfigured = isAgentConfigured();
 
   const handleAnalyze = () => {
     analyze(context);
@@ -55,13 +57,34 @@ export default function AgentPanel({ context }: AgentPanelProps) {
           <span className="px-2 py-1 bg-accent/30 rounded">{context.angle}</span>
         </div>
 
+        {/* Alerta de configuración */}
+        {!isConfigured && (
+          <Alert variant="default" className="border-amber-500/50 bg-amber-500/10">
+            <AlertTriangle className="h-4 w-4 text-amber-500" />
+            <AlertTitle className="text-amber-500">Agente no configurado</AlertTitle>
+            <AlertDescription className="text-sm">
+              Se requiere <code className="px-1.5 py-0.5 bg-background rounded text-xs">VITE_GOOGLE_API_KEY</code> para análisis real.
+              <br />
+              <a 
+                href="https://makersuite.google.com/app/apikey" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:underline mt-1 inline-block"
+              >
+                Obtener API key de Google AI Studio →
+              </a>
+            </AlertDescription>
+          </Alert>
+        )}
+
         {!output && !loading && (
           <Button 
             onClick={handleAnalyze}
             variant="node"
             className="w-full"
+            disabled={!isConfigured}
           >
-            Activar fricción
+            {isConfigured ? "Activar fricción" : "Configurar API key primero"}
           </Button>
         )}
 
