@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" id="lagrange-map">
+  <defs>
+    <style>
+      .eje-zona { opacity: 0.1; }
+      .eje-label { font-family: monospace; font-size: 14px; font-weight: bold; fill: currentColor; }
+      .pregunta-node { cursor: pointer; transition: all 0.3s; }
+      .pregunta-node:hover { r: 12; }
+      .pregunta-text { font-family: sans-serif; font-size: 10px; fill: #333; pointer-events: none; }
+      .relacion-line { stroke-width: 1; opacity: 0.4; }
+      .relacion-refuerza { stroke: #06d6a0; stroke-dasharray: none; }
+      .relacion-contradice { stroke: #e63946; stroke-dasharray: 5,5; }
+      .relacion-desplaza { stroke: #f77f00; stroke-dasharray: 2,2; }
+      .episodio-badge { fill: #9d4edd; stroke: #fff; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <!-- EJES COMO ZONAS -->
+  <g id="ejes">
+    <!-- Miedo: top-left -->
+    <circle class="eje-zona" cx="250" cy="200" r="180" fill="#e63946" data-eje="miedo"/>
+    <text class="eje-label" x="250" y="80" text-anchor="middle" fill="#e63946">MIEDO</text>
+    
+    <!-- Control: top-right -->
+    <circle class="eje-zona" cx="950" cy="200" r="180" fill="#f77f00" data-eje="control"/>
+    <text class="eje-label" x="950" y="80" text-anchor="middle" fill="#f77f00">CONTROL</text>
+    
+    <!-- Salud Mental: center -->
+    <circle class="eje-zona" cx="600" cy="400" r="200" fill="#06aed5" data-eje="salud_mental"/>
+    <text class="eje-label" x="600" y="280" text-anchor="middle" fill="#06aed5">SALUD MENTAL</text>
+    
+    <!-- Legitimidad: bottom-left -->
+    <circle class="eje-zona" cx="280" cy="630" r="160" fill="#9d4edd" data-eje="legitimidad"/>
+    <text class="eje-label" x="280" y="750" text-anchor="middle" fill="#9d4edd">LEGITIMIDAD</text>
+    
+    <!-- Responsabilidad: bottom-right -->
+    <circle class="eje-zona" cx="920" cy="630" r="160" fill="#06d6a0" data-eje="responsabilidad"/>
+    <text class="eje-label" x="920" y="750" text-anchor="middle" fill="#06d6a0">RESPONSABILIDAD</text>
+  </g>
+
+  <!-- RELACIONES (debajo de los nodos) -->
+  <g id="relaciones">
+    <!-- Miedo -->
+    <line class="relacion-line relacion-refuerza" x1="220" y1="150" x2="250" y2="220" data-origen="Q01" data-destino="Q03"/>
+    <line class="relacion-line relacion-desplaza" x1="220" y1="150" x2="550" y2="380" data-origen="Q01" data-destino="Q08"/>
+    <line class="relacion-line relacion-contradice" x1="220" y1="150" x2="240" y2="580" data-origen="Q01" data-destino="Q19"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="180" y1="180" x2="850" y2="170" data-origen="Q02" data-destino="Q04"/>
+    <line class="relacion-line relacion-contradice" x1="180" y1="180" x2="260" y2="550" data-origen="Q02" data-destino="Q10"/>
+    <line class="relacion-line relacion-desplaza" x1="180" y1="180" x2="280" y2="240" data-origen="Q02" data-destino="Q16"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="250" y1="220" x2="880" y2="200" data-origen="Q03" data-destino="Q05"/>
+    <line class="relacion-line relacion-contradice" x1="250" y1="220" x2="320" y2="600" data-origen="Q03" data-destino="Q11"/>
+    
+    <!-- Control -->
+    <line class="relacion-line relacion-refuerza" x1="850" y1="170" x2="920" y2="150" data-origen="Q04" data-destino="Q17"/>
+    <line class="relacion-line relacion-desplaza" x1="850" y1="170" x2="950" y2="240" data-origen="Q04" data-destino="Q06"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="880" y1="200" x2="890" y2="580" data-origen="Q05" data-destino="Q14"/>
+    <line class="relacion-line relacion-contradice" x1="880" y1="200" x2="940" y2="650" data-origen="Q05" data-destino="Q20"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="950" y1="240" x2="300" y2="630" data-origen="Q06" data-destino="Q12"/>
+    <line class="relacion-line relacion-desplaza" x1="950" y1="240" x2="900" y2="620" data-origen="Q06" data-destino="Q15"/>
+    
+    <!-- Salud Mental -->
+    <line class="relacion-line relacion-refuerza" x1="520" y1="380" x2="580" y2="420" data-origen="Q07" data-destino="Q08"/>
+    <line class="relacion-line relacion-contradice" x1="520" y1="380" x2="650" y2="450" data-origen="Q07" data-destino="Q09"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="580" y1="420" x2="680" y2="470" data-origen="Q08" data-destino="Q18"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="650" y1="450" x2="680" y2="470" data-origen="Q09" data-destino="Q18"/>
+    <line class="relacion-line relacion-desplaza" x1="650" y1="450" x2="950" y2="240" data-origen="Q09" data-destino="Q06"/>
+    
+    <!-- Legitimidad -->
+    <line class="relacion-line relacion-refuerza" x1="260" y1="550" x2="320" y2="600" data-origen="Q10" data-destino="Q11"/>
+    <line class="relacion-line relacion-contradice" x1="260" y1="550" x2="240" y2="580" data-origen="Q10" data-destino="Q19"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="320" y1="600" x2="890" y2="580" data-origen="Q11" data-destino="Q14"/>
+    
+    <line class="relacion-line relacion-desplaza" x1="300" y1="630" x2="180" y2="180" data-origen="Q12" data-destino="Q02"/>
+    
+    <!-- Responsabilidad -->
+    <line class="relacion-line relacion-refuerza" x1="860" y1="610" x2="890" y2="580" data-origen="Q13" data-destino="Q14"/>
+    <line class="relacion-line relacion-contradice" x1="860" y1="610" x2="900" y2="620" data-origen="Q13" data-destino="Q15"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="890" y1="580" x2="940" y2="650" data-origen="Q14" data-destino="Q20"/>
+    
+    <line class="relacion-line relacion-desplaza" x1="900" y1="620" x2="300" y2="630" data-origen="Q15" data-destino="Q12"/>
+    
+    <!-- Cruces sistémicos -->
+    <line class="relacion-line relacion-desplaza" x1="280" y1="240" x2="920" y2="150" data-origen="Q16" data-destino="Q17"/>
+    <line class="relacion-line relacion-contradice" x1="280" y1="240" x2="650" y2="450" data-origen="Q16" data-destino="Q09"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="920" y1="150" x2="520" y2="380" data-origen="Q17" data-destino="Q07"/>
+    
+    <line class="relacion-line relacion-contradice" x1="680" y1="470" x2="240" y2="580" data-origen="Q18" data-destino="Q19"/>
+    
+    <line class="relacion-line relacion-refuerza" x1="240" y1="580" x2="680" y2="470" data-origen="Q19" data-destino="Q18"/>
+    
+    <line class="relacion-line relacion-contradice" x1="940" y1="650" x2="320" y2="600" data-origen="Q20" data-destino="Q11"/>
+  </g>
+
+  <!-- NODOS DE PREGUNTAS -->
+  <g id="preguntas">
+    <!-- Miedo -->
+    <g class="pregunta-node" id="Q01" data-eje="miedo" data-nivel="individual" data-episodio="E01">
+      <circle cx="220" cy="150" r="8" fill="#e63946"/>
+      <circle class="episodio-badge" cx="232" cy="142" r="4"/>
+      <text class="pregunta-text" x="220" y="135" text-anchor="middle">Q01</text>
+    </g>
+    <g class="pregunta-node" id="Q02" data-eje="miedo" data-nivel="sistemico">
+      <circle cx="180" cy="180" r="8" fill="#e63946"/>
+      <text class="pregunta-text" x="180" y="165" text-anchor="middle">Q02</text>
+    </g>
+    <g class="pregunta-node" id="Q03" data-eje="miedo" data-nivel="institucional">
+      <circle cx="250" cy="220" r="8" fill="#e63946"/>
+      <text class="pregunta-text" x="250" y="205" text-anchor="middle">Q03</text>
+    </g>
+    <g class="pregunta-node" id="Q16" data-eje="miedo" data-nivel="sistemico">
+      <circle cx="280" cy="240" r="8" fill="#e63946"/>
+      <text class="pregunta-text" x="280" y="225" text-anchor="middle">Q16</text>
+    </g>
+    
+    <!-- Control -->
+    <g class="pregunta-node" id="Q04" data-eje="control" data-nivel="individual" data-episodio="E02">
+      <circle cx="850" cy="170" r="8" fill="#f77f00"/>
+      <circle class="episodio-badge" cx="862" cy="162" r="4"/>
+      <text class="pregunta-text" x="850" y="155" text-anchor="middle">Q04</text>
+    </g>
+    <g class="pregunta-node" id="Q05" data-eje="control" data-nivel="institucional">
+      <circle cx="880" cy="200" r="8" fill="#f77f00"/>
+      <text class="pregunta-text" x="880" y="185" text-anchor="middle">Q05</text>
+    </g>
+    <g class="pregunta-node" id="Q06" data-eje="control" data-nivel="sistemico">
+      <circle cx="950" cy="240" r="8" fill="#f77f00"/>
+      <text class="pregunta-text" x="950" y="225" text-anchor="middle">Q06</text>
+    </g>
+    <g class="pregunta-node" id="Q17" data-eje="control" data-nivel="individual">
+      <circle cx="920" cy="150" r="8" fill="#f77f00"/>
+      <text class="pregunta-text" x="920" y="135" text-anchor="middle">Q17</text>
+    </g>
+    
+    <!-- Salud Mental -->
+    <g class="pregunta-node" id="Q07" data-eje="salud_mental" data-nivel="individual" data-episodio="E03">
+      <circle cx="520" cy="380" r="8" fill="#06aed5"/>
+      <circle class="episodio-badge" cx="532" cy="372" r="4"/>
+      <text class="pregunta-text" x="520" y="365" text-anchor="middle">Q07</text>
+    </g>
+    <g class="pregunta-node" id="Q08" data-eje="salud_mental" data-nivel="institucional">
+      <circle cx="580" cy="420" r="8" fill="#06aed5"/>
+      <text class="pregunta-text" x="580" y="405" text-anchor="middle">Q08</text>
+    </g>
+    <g class="pregunta-node" id="Q09" data-eje="salud_mental" data-nivel="sistemico">
+      <circle cx="650" cy="450" r="8" fill="#06aed5"/>
+      <text class="pregunta-text" x="650" y="435" text-anchor="middle">Q09</text>
+    </g>
+    <g class="pregunta-node" id="Q18" data-eje="salud_mental" data-nivel="sistemico">
+      <circle cx="680" cy="470" r="8" fill="#06aed5"/>
+      <text class="pregunta-text" x="680" y="455" text-anchor="middle">Q18</text>
+    </g>
+    
+    <!-- Legitimidad -->
+    <g class="pregunta-node" id="Q10" data-eje="legitimidad" data-nivel="individual" data-episodio="E04">
+      <circle cx="260" cy="550" r="8" fill="#9d4edd"/>
+      <circle class="episodio-badge" cx="272" cy="542" r="4"/>
+      <text class="pregunta-text" x="260" y="535" text-anchor="middle">Q10</text>
+    </g>
+    <g class="pregunta-node" id="Q11" data-eje="legitimidad" data-nivel="institucional">
+      <circle cx="320" cy="600" r="8" fill="#9d4edd"/>
+      <text class="pregunta-text" x="320" y="585" text-anchor="middle">Q11</text>
+    </g>
+    <g class="pregunta-node" id="Q12" data-eje="legitimidad" data-nivel="sistemico">
+      <circle cx="300" cy="630" r="8" fill="#9d4edd"/>
+      <text class="pregunta-text" x="300" y="615" text-anchor="middle">Q12</text>
+    </g>
+    <g class="pregunta-node" id="Q19" data-eje="legitimidad" data-nivel="individual">
+      <circle cx="240" cy="580" r="8" fill="#9d4edd"/>
+      <text class="pregunta-text" x="240" y="565" text-anchor="middle">Q19</text>
+    </g>
+    
+    <!-- Responsabilidad -->
+    <g class="pregunta-node" id="Q13" data-eje="responsabilidad" data-nivel="individual">
+      <circle cx="860" cy="610" r="8" fill="#06d6a0"/>
+      <text class="pregunta-text" x="860" y="595" text-anchor="middle">Q13</text>
+    </g>
+    <g class="pregunta-node" id="Q14" data-eje="responsabilidad" data-nivel="institucional" data-episodio="E05">
+      <circle cx="890" cy="580" r="8" fill="#06d6a0"/>
+      <circle class="episodio-badge" cx="902" cy="572" r="4"/>
+      <text class="pregunta-text" x="890" y="565" text-anchor="middle">Q14</text>
+    </g>
+    <g class="pregunta-node" id="Q15" data-eje="responsabilidad" data-nivel="sistemico">
+      <circle cx="900" cy="620" r="8" fill="#06d6a0"/>
+      <text class="pregunta-text" x="900" y="605" text-anchor="middle">Q15</text>
+    </g>
+    <g class="pregunta-node" id="Q20" data-eje="responsabilidad" data-nivel="institucional">
+      <circle cx="940" cy="650" r="8" fill="#06d6a0"/>
+      <text class="pregunta-text" x="940" y="635" text-anchor="middle">Q20</text>
+    </g>
+  </g>
+</svg>
