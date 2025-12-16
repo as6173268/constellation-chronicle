@@ -12,9 +12,9 @@ export interface Episode {
 export const episodes: Episode[] = [
   {
     id: 1,
-    title: "El Despertar del Miedo",
-    description: "Primer episodio de la travesía. Exploramos el origen del temor y su papel en la construcción de la consciencia humana.",
-    duration: "32:15",
+    title: "Silenciar la conciencia por miedo a la exclusión",
+    description: "Primer episodio de la travesía. Una reflexión sobre cómo el miedo al rechazo social nos lleva a silenciar nuestra propia voz interior.",
+    duration: "10:12",
     publishedAt: "2024-01-15",
     chapterId: 1,
     season: 1,
