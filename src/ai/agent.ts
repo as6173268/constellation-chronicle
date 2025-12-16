@@ -6,7 +6,7 @@ import { buildAgentPromptWithPilares, buildPilarAnalysisPrompt } from "./prompts
 import { pilares } from "@/data/pilares";
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
 
 /**
  * Verifica si el agente está configurado con API real

@@ -23,7 +23,7 @@ export function useLaboratorioIA() {
         throw new Error("API key no configurada. Define VITE_GOOGLE_API_KEY en .env.local");
       }
 
-      const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+      const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
       
       const response = await fetch(`${GEMINI_API_URL}?key=${GOOGLE_API_KEY}`, {
         method: "POST",
