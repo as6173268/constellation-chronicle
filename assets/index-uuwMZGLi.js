@@ -264,7 +264,7 @@ Estructura de salida (RESPONDE EXACTAMENTE en formato JSON):
   "eje": "<eje activado>",
   "tension": "<tensión dominante>",
   "preguntaEvita": "<pregunta que el sistema evita>",
-  "narrativa": "<4 líneas que sinteticen la tensión detectada en lenguaje directo y sin concesiones. Cada línea debe aportar un insight diferente sobre la contradicción estructural.>"
+  "narrativa": "<5 líneas que sinteticen la tensión detectada en lenguaje directo y sin concesiones. Cada línea debe aportar un insight diferente sobre la contradicción estructural. No repitas conceptos. Cada línea debe revelar una capa más profunda del problema.>"
 }
 
 Criterios de análisis publicable:
