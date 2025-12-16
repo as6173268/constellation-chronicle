@@ -1,0 +1,39 @@
+<svg id="lagrange-map" width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Zonas de ejes conceptuales -->
+  <g id="ejes">
+    <ellipse id="eje-miedo" cx="180" cy="180" rx="120" ry="80" fill="#f5eaea" data-eje="miedo"/>
+    <ellipse id="eje-control" cx="720" cy="180" rx="120" ry="80" fill="#eaf5ea" data-eje="control"/>
+    <ellipse id="eje-salud_mental" cx="180" cy="420" rx="120" ry="80" fill="#eaeaf5" data-eje="salud_mental"/>
+    <ellipse id="eje-legitimidad" cx="720" cy="420" rx="120" ry="80" fill="#f5f5ea" data-eje="legitimidad"/>
+    <ellipse id="eje-responsabilidad" cx="450" cy="300" rx="140" ry="100" fill="#f5f0ea" data-eje="responsabilidad"/>
+  </g>
+  <!-- Nodos de preguntas -->
+  <g id="preguntas">
+    <circle id="Q01" cx="140" cy="140" r="22" fill="#c44" data-pregunta="Q01"/>
+    <circle id="Q02" cx="450" cy="120" r="22" fill="#4c4" data-pregunta="Q02"/>
+    <circle id="Q03" cx="760" cy="140" r="22" fill="#44c" data-pregunta="Q03"/>
+    <circle id="Q04" cx="140" cy="460" r="22" fill="#c4c" data-pregunta="Q04"/>
+    <circle id="Q05" cx="760" cy="460" r="22" fill="#cc4" data-pregunta="Q05"/>
+  </g>
+  <!-- Relaciones (líneas) -->
+  <g id="relaciones">
+    <line id="rel-Q01-Q08" x1="140" y1="140" x2="200" y2="80" stroke="#c44" stroke-width="3" stroke-dasharray="6,4" data-tipo="refuerza"/>
+    <line id="rel-Q01-Q12" x1="140" y1="140" x2="100" y2="60" stroke="#44c" stroke-width="3" stroke-dasharray="2,6" data-tipo="contradice"/>
+    <line id="rel-Q02-Q05" x1="450" y1="120" x2="760" y2="460" stroke="#cc4" stroke-width="3" data-tipo="desplaza"/>
+    <line id="rel-Q02-Q07" x1="450" y1="120" x2="500" y2="200" stroke="#44c" stroke-width="3" stroke-dasharray="2,6" data-tipo="contradice"/>
+    <line id="rel-Q03-Q04" x1="760" y1="140" x2="140" y2="460" stroke="#4c4" stroke-width="3" data-tipo="refuerza"/>
+    <line id="rel-Q03-Q06" x1="760" y1="140" x2="800" y2="220" stroke="#cc4" stroke-width="3" data-tipo="desplaza"/>
+    <line id="rel-Q04-Q03" x1="140" y1="460" x2="760" y2="140" stroke="#44c" stroke-width="3" stroke-dasharray="2,6" data-tipo="contradice"/>
+    <line id="rel-Q04-Q09" x1="140" y1="460" x2="100" y2="540" stroke="#4c4" stroke-width="3" data-tipo="refuerza"/>
+    <line id="rel-Q05-Q02" x1="760" y1="460" x2="450" y2="120" stroke="#44c" stroke-width="3" stroke-dasharray="2,6" data-tipo="contradice"/>
+    <line id="rel-Q05-Q10" x1="760" y1="460" x2="800" y2="540" stroke="#4c4" stroke-width="3" data-tipo="refuerza"/>
+  </g>
+  <!-- Etiquetas de preguntas -->
+  <g id="labels">
+    <text x="140" y="135" font-size="12" text-anchor="middle" fill="#222">Q01</text>
+    <text x="450" y="115" font-size="12" text-anchor="middle" fill="#222">Q02</text>
+    <text x="760" y="135" font-size="12" text-anchor="middle" fill="#222">Q03</text>
+    <text x="140" y="455" font-size="12" text-anchor="middle" fill="#222">Q04</text>
+    <text x="760" y="455" font-size="12" text-anchor="middle" fill="#222">Q05</text>
+  </g>
+</svg>

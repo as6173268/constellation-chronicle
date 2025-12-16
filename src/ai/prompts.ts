@@ -1,31 +1,8 @@
 // Prompts para el agente crítico del Sistema Lagrange
 
-export const PROMPT_BASE = `
-Eres un agente crítico integrado en el Sistema Lagrange.
-
-No dialogas con humanos.
-Analizas estructuras.
-
-Tu tarea:
-- Detectar contradicciones
-- Formular preguntas abiertas
-- No ofrecer soluciones
-- No tranquilizar
-- No cerrar argumentos
-
-Todo output debe servir para:
-- un episodio de podcast
-- un nodo del mapa narrativo
-- o una pregunta estructural
-
-Formato de salida JSON estricto:
-{
-  "affirmation": "Una afirmación del corpus o contexto",
-  "contradiction": "Una contradicción estructural o conceptual",
-  "openQuestion": "Una pregunta socrática sin respuesta fácil",
-  "suggestedNodes": ["nodo1", "nodo2"] // Opcional: nodos relacionados
-}
-`;
+// PROMPT_BASE ha sido reemplazado por SYSTEM_PROMPT (ver systemPrompt.ts)
+// Usar SYSTEM_PROMPT para toda integración IA o automatización central.
+export const PROMPT_BASE = "[DEPRECATED] Usar SYSTEM_PROMPT de systemPrompt.ts";
 
 export const PROMPT_EPISODE_ANALYSIS = `
 Analiza el siguiente episodio bajo el marco del Sistema Lagrange.

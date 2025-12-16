@@ -1,7 +1,7 @@
 // Agente IA para análisis crítico del Sistema Lagrange
 
 import { AgentInput, AgentOutput, AgentError } from "./types";
-import { PROMPT_BASE } from "./prompts";
+import { SYSTEM_PROMPT } from "./systemPrompt";
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
@@ -25,7 +25,7 @@ export async function runAgent(input: AgentInput): Promise<AgentOutput> {
     }
 
     // Preparar el prompt para Gemini
-    const prompt = `${PROMPT_BASE}
+    const prompt = `${SYSTEM_PROMPT}
 
 Contexto de análisis:
 - Corpus: ${input.corpus.substring(0, 500)}...
