@@ -57,22 +57,35 @@ export async function runAgent(input: AgentInput): Promise<AgentOutput> {
     });
 
     if (!response.ok) {
-      throw new Error(`API_ERROR: ${response.statusText}`);
+      const errorData = await response.json().catch(() => ({}));
+      const errorMsg = errorData?.error?.message || response.statusText;
+      throw new Error(`API_ERROR: ${errorMsg}`);
     }
 
     const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    
+    // Verificar si hay candidatos
+    if (!data.candidates || data.candidates.length === 0) {
+      throw new Error("NO_CANDIDATES: La API no devolvió resultados");
+    }
+    
+    const text = data.candidates[0]?.content?.parts?.[0]?.text || "";
+    
+    if (!text) {
+      throw new Error("EMPTY_RESPONSE: La respuesta está vacía");
+    }
     
     // Extraer JSON de la respuesta
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      throw new Error("INVALID_RESPONSE_FORMAT");
+      throw new Error(`INVALID_RESPONSE_FORMAT: No se encontró JSON válido en la respuesta. Texto recibido: ${text.substring(0, 200)}...`);
     }
 
     const result = JSON.parse(jsonMatch[0]);
     return result as AgentOutput;
 
   } catch (error: any) {
+    console.error("Error en runAgent:", error);
     throw {
       message: error.message || "Error desconocido",
       code: error.code || "UNKNOWN_ERROR"
@@ -116,21 +129,33 @@ export async function analyzePilares(input: PilarAnalysisInput): Promise<PilarAn
     });
 
     if (!response.ok) {
-      throw new Error(`API_ERROR: ${response.statusText}`);
+      const errorData = await response.json().catch(() => ({}));
+      const errorMsg = errorData?.error?.message || response.statusText;
+      throw new Error(`API_ERROR: ${errorMsg}`);
     }
 
     const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    
+    if (!data.candidates || data.candidates.length === 0) {
+      throw new Error("NO_CANDIDATES: La API no devolvió resultados");
+    }
+    
+    const text = data.candidates[0]?.content?.parts?.[0]?.text || "";
+    
+    if (!text) {
+      throw new Error("EMPTY_RESPONSE: La respuesta está vacía");
+    }
     
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      throw new Error("INVALID_RESPONSE_FORMAT");
+      throw new Error(`INVALID_RESPONSE_FORMAT: No se encontró JSON válido`);
     }
 
     const result = JSON.parse(jsonMatch[0]);
     return result as PilarAnalysisOutput;
 
   } catch (error: any) {
+    console.error("Error en analyzePilares:", error);
     throw {
       message: error.message || "Error desconocido",
       code: error.code || "UNKNOWN_ERROR"
