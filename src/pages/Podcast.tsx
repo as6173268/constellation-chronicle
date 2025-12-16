@@ -1,15 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { EpisodeCard } from "@/components/EpisodeCard";
-
-import { episodes } from "@/data/episodes";
-import { EpisodeMarkdown } from "@/components/EpisodeMarkdown";
-import { useEffect, useState } from "react";
+import { AudioPlayer } from "@/components/AudioPlayer";
+import { episodes, getLatestEpisodes } from "@/data/episodes";
 
 export default function Podcast() {
-  // Lógica para enlazar dinámicamente el audio
-  // Usar directamente el archivo real
-  const audioFileName = "Silenciar_la_conciencia_por_miedo_a_la_exclusión001.m4a";
-  const audioUrl = `${import.meta.env.BASE_URL}episodes/${audioFileName}`;
+  const latestEpisode = getLatestEpisodes(1)[0];
 
   return (
     <div className="min-h-screen">
@@ -26,27 +21,25 @@ export default function Podcast() {
             </p>
           </div>
 
-          {/* Episodio Markdown de ejemplo */}
-          <div className="mb-12">
-            <h2 className="font-display text-2xl font-semibold mb-4">Episodio Destacado</h2>
-            <div className="mb-6">
-              <audio
-                key={audioUrl}
-                controls
-                controlsList="nodownload"
-                preload="auto"
-                className="w-full"
-                src={audioUrl}
-              >
-                Tu navegador no soporta la reproducción de audio.
-              </audio>
-              <span className="inline-block mt-2 px-3 py-1 text-xs bg-accent/30 border border-border rounded-full text-muted-foreground">
-                Archivo: {audioFileName}
-              </span>
+          {/* Featured Episode */}
+          {latestEpisode && (
+            <div className="mb-12">
+              <h2 className="font-display text-2xl font-semibold mb-4">
+                Último Episodio
+              </h2>
+              <AudioPlayer
+                title={latestEpisode.title}
+                duration={latestEpisode.duration}
+                episodeNumber={latestEpisode.id}
+                audioUrl={latestEpisode.audioUrl}
+              />
             </div>
-          </div>
+          )}
 
           {/* Episodes Grid */}
+          <h2 className="font-display text-2xl font-semibold mb-6">
+            Todos los Episodios
+          </h2>
           <div className="grid gap-4 md:grid-cols-2">
             {episodes.map((episode) => (
               <EpisodeCard key={episode.id} episode={episode} />
