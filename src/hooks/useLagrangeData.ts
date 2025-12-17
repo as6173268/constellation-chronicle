@@ -71,15 +71,52 @@ export function useLagrangeConnections() {
 }
 
 export function useLagrangeData() {
-  const axesQuery = useLagrangeAxes();
-  const nodesQuery = useLagrangeNodes();
-  const connectionsQuery = useLagrangeConnections();
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["lagrange-map"],
+    queryFn: async () => {
+      const response = await fetch('/data/lagrange_map.json');
+      if (!response.ok) throw new Error('Failed to load map data');
+      return response.json();
+    },
+  });
+
+  if (isLoading) return { axes: [], nodes: [], connections: [], isLoading: true, error: null };
+
+  if (error) return { axes: [], nodes: [], connections: [], isLoading: false, error };
+
+  const mapData = data;
+
+  const nodes: LagrangeNode[] = mapData.nodes.map((n: any) => ({
+    id: n.id,
+    titulo: n.id,
+    episodio: 1,
+    eje: n.eje,
+    angulo: "",
+    palabras_clave: [],
+    url: null,
+    position_x: n.x,
+    position_y: n.y,
+  }));
+
+  const connections: LagrangeConnection[] = mapData.edges.map((e: any) => ({
+    id: e.id || `${e.from}-${e.to}`,
+    from_node: e.from,
+    to_node: e.to,
+    tipo: e.tipo || "default",
+  }));
+
+  // Extract unique axes from nodes
+  const axes: LagrangeAxis[] = [...new Set(nodes.map(n => n.eje))].map(eje => ({
+    id: eje,
+    label: eje,
+    color: "#3b82f6", // default color
+  }));
 
   return {
-    axes: axesQuery.data ?? [],
-    nodes: nodesQuery.data ?? [],
-    connections: connectionsQuery.data ?? [],
-    isLoading: axesQuery.isLoading || nodesQuery.isLoading || connectionsQuery.isLoading,
-    error: axesQuery.error || nodesQuery.error || connectionsQuery.error,
+    axes,
+    nodes,
+    connections,
+    isLoading: false,
+    error: null,
   };
 }

@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "title": "Episodio 1: Miedo - psicologica",
+    "description": "¿Qué parte de tu miedo es realmente tuyo y qué parte ha sido cultivada por el entorno?",
+    "duration": "26:00",
+    "publishedAt": "2024-12-11",
+    "chapterId": 1,
+    "season": 1
+  },
+  {
+    "id": 2,
+    "title": "Episodio 2: Control - politica",
+    "description": "¿Cómo se justifica el control como libertad cuando elimina opciones sin declararlas?",
+    "duration": "27:00",
+    "publishedAt": "2024-12-12",
+    "chapterId": 2,
+    "season": 1
+  },
+  {
+    "id": 3,
+    "title": "Episodio 3: Salud_Mental - etica",
+    "description": "¿Cuándo la salud mental deja de ser cuidado y se convierte en mecanismo de ajuste social?",
+    "duration": "28:00",
+    "publishedAt": "2024-12-13",
+    "chapterId": 3,
+    "season": 1
+  },
+  {
+    "id": 4,
+    "title": "Episodio 4: Legitimidad - simbolica",
+    "description": "¿Qué narrativas legitiman el poder sin necesidad de evidencia?",
+    "duration": "29:00",
+    "publishedAt": "2024-12-14",
+    "chapterId": 4,
+    "season": 1
+  },
+  {
+    "id": 5,
+    "title": "Episodio 5: Responsabilidad - politica",
+    "description": "¿Quién carga con la responsabilidad cuando todos delegan?",
+    "duration": "25:00",
+    "publishedAt": "2024-12-15",
+    "chapterId": 5,
+    "season": 1
+  },
+  {
+    "id": 6,
+    "title": "Episodio 6: Miedo - etica",
+    "description": "¿Qué miedos colectivos se disfrazan de consensos inevitables?",
+    "duration": "26:00",
+    "publishedAt": "2024-12-16",
+    "chapterId": 6,
+    "season": 1
+  },
+  {
+    "id": 7,
+    "title": "Episodio 7: Control - psicologica",
+    "description": "¿Cómo internalizas el control hasta que lo confundes con autonomía?",
+    "duration": "27:00",
+    "publishedAt": "2024-12-17",
+    "chapterId": 7,
+    "season": 1
+  },
+  {
+    "id": 8,
+    "title": "Episodio 8: Salud_Mental - simbolica",
+    "description": "¿Qué síntomas se convierten en diagnósticos cuando cuestionan el orden establecido?",
+    "duration": "28:00",
+    "publishedAt": "2024-12-18",
+    "chapterId": 8,
+    "season": 1
+  },
+  {
+    "id": 9,
+    "title": "Episodio 9: Legitimidad - politica",
+    "description": "¿Cómo sobreviven las instituciones a su propia ilegitimidad demostrada?",
+    "duration": "29:00",
+    "publishedAt": "2024-12-19",
+    "chapterId": 9,
+    "season": 1
+  },
+  {
+    "id": 10,
+    "title": "Episodio 10: Responsabilidad - etica",
+    "description": "¿Qué culpas heredadas sigues pagando sin haberlas cometido?",
+    "duration": "25:00",
+    "publishedAt": "2024-12-20",
+    "chapterId": 10,
+    "season": 1
+  },
+  {
+    "id": 11,
+    "title": "Episodio 11: Miedo - simbolica",
+    "description": "¿Qué símbolos de seguridad ocultan mecanismos de vigilancia?",
+    "duration": "26:00",
+    "publishedAt": "2024-12-21",
+    "chapterId": 11,
+    "season": 1
+  },
+  {
+    "id": 12,
+    "title": "Episodio 12: Control - psicologica",
+    "description": "¿Cómo se diseña el entorno para que la obediencia parezca elección natural?",
+    "duration": "27:00",
+    "publishedAt": "2024-12-22",
+    "chapterId": 12,
+    "season": 1
+  },
+  {
+    "id": 13,
+    "title": "Episodio 13: Salud_Mental - politica",
+    "description": "¿Qué lucidez se etiqueta como enfermedad para mantener el statu quo?",
+    "duration": "28:00",
+    "publishedAt": "2024-12-23",
+    "chapterId": 13,
+    "season": 1
+  },
+  {
+    "id": 14,
+    "title": "Episodio 14: Legitimidad - etica",
+    "description": "¿Qué principios éticos se invocan para justificar desigualdades estructurales?",
+    "duration": "29:00",
+    "publishedAt": "2024-12-24",
+    "chapterId": 14,
+    "season": 1
+  },
+  {
+    "id": 15,
+    "title": "Episodio 15: Responsabilidad - simbolica",
+    "description": "¿Cómo se diluye la culpa colectiva hasta desaparecer en lo impersonal?",
+    "duration": "25:00",
+    "publishedAt": "2024-12-25",
+    "chapterId": 15,
+    "season": 1
+  },
+  {
+    "id": 16,
+    "title": "Episodio 16: Salud_Mental - simbolica",
+    "description": "¿Cómo el sistema convierte la lucidez en locura para mantener el control?",
+    "duration": "26:00",
+    "publishedAt": "2024-12-26",
+    "chapterId": 16,
+    "season": 1
+  },
+  {
+    "id": 17,
+    "title": "Episodio 17: Salud_Mental - simbolica",
+    "description": "¿Qué imagen de mí me devuelve el diagnóstico que en realidad describe al sistema?",
+    "duration": "27:00",
+    "publishedAt": "2024-12-27",
+    "chapterId": 17,
+    "season": 1
+  },
+  {
+    "id": 18,
+    "title": "Episodio 18: Salud_Mental - simbolica",
+    "description": "¿Por qué mis percepciones válidas son invalidadas como síntomas?",
+    "duration": "28:00",
+    "publishedAt": "2024-12-28",
+    "chapterId": 18,
+    "season": 1
+  }
+]

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .eje { fill: rgba(0,0,0,0.1); stroke: #000; stroke-width: 1; }
+      .pregunta { fill: #000; stroke: #fff; stroke-width: 2; }
+      .relacion.refuerza { stroke: #000; stroke-width: 2; }
+      .relacion.contradice { stroke: #f00; stroke-width: 2; stroke-dasharray: 5,5; }
+      .relacion.desplaza { stroke: #00f; stroke-width: 2; stroke-dasharray: 2,2; }
+      text { font-size: 10px; text-anchor: middle; }
+    </style>
+  </defs>
+  
+  <!-- Ejes as zones -->
+  <rect id="eje-miedo" class="eje" x="0" y="0" width="400" height="300" data-label="Miedo" data-descripcion="El miedo como motor de obediencia y erosión interior." />
+  <rect id="eje-control" class="eje" x="400" y="0" width="400" height="300" data-label="Control" data-descripcion="El control como domesticación anticipada." />
+  <rect id="eje-salud_mental" class="eje" x="0" y="300" width="400" height="300" data-label="Salud Mental" data-descripcion="La salud mental como corrección social." />
+  <rect id="eje-legitimidad" class="eje" x="400" y="300" width="400" height="300" data-label="Legitimidad" data-descripcion="La legitimidad como narrativa cohesionadora." />
+  <rect id="eje-responsabilidad" class="eje" x="200" y="150" width="400" height="300" data-label="Responsabilidad" data-descripcion="La responsabilidad como dilución colectiva." />
+  
+  <!-- Preguntas as nodes -->
+  <circle id="pregunta-Q01" class="pregunta" cx="100" cy="100" r="10" data-eje="miedo" data-nivel="individual" data-tension="psicologica" />
+  <circle id="pregunta-Q02" class="pregunta" cx="500" cy="100" r="10" data-eje="control" data-nivel="institucional" data-tension="politica" />
+  <circle id="pregunta-Q03" class="pregunta" cx="100" cy="400" r="10" data-eje="salud_mental" data-nivel="sistemico" data-tension="etica" />
+  <circle id="pregunta-Q04" class="pregunta" cx="500" cy="400" r="10" data-eje="legitimidad" data-nivel="individual" data-tension="simbolica" />
+  <circle id="pregunta-Q05" class="pregunta" cx="300" cy="300" r="10" data-eje="responsabilidad" data-nivel="institucional" data-tension="politica" />
+  <circle id="pregunta-Q06" class="pregunta" cx="200" cy="150" r="10" data-eje="miedo" data-nivel="sistemico" data-tension="etica" />
+  <circle id="pregunta-Q07" class="pregunta" cx="600" cy="150" r="10" data-eje="control" data-nivel="individual" data-tension="psicologica" />
+  <circle id="pregunta-Q08" class="pregunta" cx="200" cy="450" r="10" data-eje="salud_mental" data-nivel="institucional" data-tension="simbolica" />
+  <circle id="pregunta-Q09" class="pregunta" cx="600" cy="450" r="10" data-eje="legitimidad" data-nivel="sistemico" data-tension="politica" />
+  <circle id="pregunta-Q10" class="pregunta" cx="400" cy="350" r="10" data-eje="responsabilidad" data-nivel="individual" data-tension="etica" />
+  <circle id="pregunta-Q11" class="pregunta" cx="300" cy="200" r="10" data-eje="miedo" data-nivel="institucional" data-tension="simbolica" />
+  <circle id="pregunta-Q12" class="pregunta" cx="700" cy="200" r="10" data-eje="control" data-nivel="sistemico" data-tension="psicologica" />
+  <circle id="pregunta-Q13" class="pregunta" cx="300" cy="500" r="10" data-eje="salud_mental" data-nivel="individual" data-tension="politica" />
+  <circle id="pregunta-Q14" class="pregunta" cx="700" cy="500" r="10" data-eje="legitimidad" data-nivel="institucional" data-tension="etica" />
+  <circle id="pregunta-Q15" class="pregunta" cx="500" cy="400" r="10" data-eje="responsabilidad" data-nivel="sistemico" data-tension="simbolica" />
+  
+  <!-- Labels for preguntas -->
+  <text x="100" y="125">Q01</text>
+  <text x="500" y="125">Q02</text>
+  <text x="100" y="425">Q03</text>
+  <text x="500" y="425">Q04</text>
+  <text x="300" y="325">Q05</text>
+  <text x="200" y="175">Q06</text>
+  <text x="600" y="175">Q07</text>
+  <text x="200" y="475">Q08</text>
+  <text x="600" y="475">Q09</text>
+  <text x="400" y="375">Q10</text>
+  <text x="300" y="225">Q11</text>
+  <text x="700" y="225">Q12</text>
+  <text x="300" y="525">Q13</text>
+  <text x="700" y="525">Q14</text>
+  <text x="500" y="425">Q15</text>
+  
+  <!-- Relaciones as lines -->
+  <line id="rel-Q01-Q06" class="relacion refuerza" x1="100" y1="100" x2="200" y2="150" data-origen="Q01" data-destino="Q06" data-tipo="refuerza" />
+  <line id="rel-Q01-Q11" class="relacion refuerza" x1="100" y1="100" x2="300" y2="200" data-origen="Q01" data-destino="Q11" data-tipo="refuerza" />
+  <line id="rel-Q01-Q07" class="relacion desplaza" x1="100" y1="100" x2="600" y2="150" data-origen="Q01" data-destino="Q07" data-tipo="desplaza" />
+  <line id="rel-Q02-Q07" class="relacion refuerza" x1="500" y1="100" x2="600" y2="150" data-origen="Q02" data-destino="Q07" data-tipo="refuerza" />
+  <line id="rel-Q02-Q12" class="relacion refuerza" x1="500" y1="100" x2="700" y2="200" data-origen="Q02" data-destino="Q12" data-tipo="refuerza" />
+  <line id="rel-Q02-Q01" class="relacion contradice" x1="500" y1="100" x2="100" y2="100" data-origen="Q02" data-destino="Q01" data-tipo="contradice" />
+  <line id="rel-Q03-Q08" class="relacion refuerza" x1="100" y1="400" x2="200" y2="450" data-origen="Q03" data-destino="Q08" data-tipo="refuerza" />
+  <line id="rel-Q03-Q13" class="relacion refuerza" x1="100" y1="400" x2="300" y2="500" data-origen="Q03" data-destino="Q13" data-tipo="refuerza" />
+  <line id="rel-Q03-Q04" class="relacion desplaza" x1="100" y1="400" x2="500" y2="400" data-origen="Q03" data-destino="Q04" data-tipo="desplaza" />
+  <line id="rel-Q04-Q09" class="relacion refuerza" x1="500" y1="400" x2="600" y2="450" data-origen="Q04" data-destino="Q09" data-tipo="refuerza" />
+  <line id="rel-Q04-Q14" class="relacion refuerza" x1="500" y1="400" x2="700" y2="500" data-origen="Q04" data-destino="Q14" data-tipo="refuerza" />
+  <line id="rel-Q04-Q03" class="relacion contradice" x1="500" y1="400" x2="100" y2="400" data-origen="Q04" data-destino="Q03" data-tipo="contradice" />
+  <line id="rel-Q05-Q10" class="relacion refuerza" x1="300" y1="300" x2="400" y2="350" data-origen="Q05" data-destino="Q10" data-tipo="refuerza" />
+  <line id="rel-Q05-Q15" class="relacion refuerza" x1="300" y1="300" x2="500" y2="400" data-origen="Q05" data-destino="Q15" data-tipo="refuerza" />
+  <line id="rel-Q05-Q02" class="relacion desplaza" x1="300" y1="300" x2="500" y2="100" data-origen="Q05" data-destino="Q02" data-tipo="desplaza" />
+  <line id="rel-Q06-Q11" class="relacion refuerza" x1="200" y1="150" x2="300" y2="200" data-origen="Q06" data-destino="Q11" data-tipo="refuerza" />
+  <line id="rel-Q06-Q12" class="relacion desplaza" x1="200" y1="150" x2="700" y2="200" data-origen="Q06" data-destino="Q12" data-tipo="desplaza" />
+  <line id="rel-Q07-Q12" class="relacion refuerza" x1="600" y1="150" x2="700" y2="200" data-origen="Q07" data-destino="Q12" data-tipo="refuerza" />
+  <line id="rel-Q07-Q01" class="relacion contradice" x1="600" y1="150" x2="100" y2="100" data-origen="Q07" data-destino="Q01" data-tipo="contradice" />
+  <line id="rel-Q08-Q13" class="relacion refuerza" x1="200" y1="450" x2="300" y2="500" data-origen="Q08" data-destino="Q13" data-tipo="refuerza" />
+  <line id="rel-Q08-Q09" class="relacion desplaza" x1="200" y1="450" x2="600" y2="450" data-origen="Q08" data-destino="Q09" data-tipo="desplaza" />
+  <line id="rel-Q09-Q14" class="relacion refuerza" x1="600" y1="450" x2="700" y2="500" data-origen="Q09" data-destino="Q14" data-tipo="refuerza" />
+  <line id="rel-Q09-Q08" class="relacion contradice" x1="600" y1="450" x2="200" y2="450" data-origen="Q09" data-destino="Q08" data-tipo="contradice" />
+  <line id="rel-Q10-Q15" class="relacion refuerza" x1="400" y1="350" x2="500" y2="400" data-origen="Q10" data-destino="Q15" data-tipo="refuerza" />
+  <line id="rel-Q10-Q06" class="relacion desplaza" x1="400" y1="350" x2="200" y2="150" data-origen="Q10" data-destino="Q06" data-tipo="desplaza" />
+  <line id="rel-Q11-Q07" class="relacion desplaza" x1="300" y1="200" x2="600" y2="150" data-origen="Q11" data-destino="Q07" data-tipo="desplaza" />
+  <line id="rel-Q12-Q06" class="relacion contradice" x1="700" y1="200" x2="200" y2="150" data-origen="Q12" data-destino="Q06" data-tipo="contradice" />
+  <line id="rel-Q13-Q14" class="relacion desplaza" x1="300" y1="500" x2="700" y2="500" data-origen="Q13" data-destino="Q14" data-tipo="desplaza" />
+  <line id="rel-Q14-Q13" class="relacion contradice" x1="700" y1="500" x2="300" y2="500" data-origen="Q14" data-destino="Q13" data-tipo="contradice" />
+  <line id="rel-Q15-Q11" class="relacion desplaza" x1="500" y1="400" x2="300" y2="200" data-origen="Q15" data-destino="Q11" data-tipo="desplaza" />
+</svg>

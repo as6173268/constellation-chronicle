@@ -1,103 +1,101 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
-
-type AppRole = 'admin' | 'editor' | 'viewer';
+import * as O from 'fp-ts/Option';
+import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/function';
+import {
+  User,
+  AuthState,
+  Credentials,
+  SignUpData,
+  signIn as functionalSignIn,
+  signUp as functionalSignUp,
+  signOut as functionalSignOut,
+  getCurrentUser,
+  isAuthenticated as functionalIsAuthenticated,
+  isEditor as functionalIsEditor,
+  initializeAuthState,
+  createAuthStateListener
+} from '@/services/authService';
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  loading: boolean;
-  roles: AppRole[];
-  isAdmin: boolean;
+  user: O.Option<User>;
+  isAuthenticated: boolean;
+  isLoading: boolean;
   isEditor: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
-  signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, name: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [roles, setRoles] = useState<AppRole[]>([]);
+  const [authState, setAuthState] = useState<AuthState>(initializeAuthState);
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        if (session?.user) {
-          setTimeout(() => {
-            fetchUserRoles(session.user.id);
-          }, 0);
-        } else {
-          setRoles([]);
-        }
-      }
-    );
+    // Set initial state
+    setAuthState(initializeAuthState());
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        fetchUserRoles(session.user.id);
-      }
-      setLoading(false);
+    // Create auth state listener
+    const unsubscribe = createAuthStateListener((newState) => {
+      setAuthState(newState);
     });
 
-    return () => subscription.unsubscribe();
+    return unsubscribe;
   }, []);
 
-  const fetchUserRoles = async (userId: string) => {
-    const { data, error } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userId);
-    
-    if (!error && data) {
-      setRoles(data.map(r => r.role as AppRole));
-    }
-  };
-
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error: error as Error | null };
+    const credentials: Credentials = { email, password };
+
+    const result = await functionalSignIn(credentials)();
+
+    if (result._tag === 'Left') {
+      return { error: result.left };
+    }
+
+    // Update state after successful sign in
+    setAuthState(initializeAuthState());
+    return { error: null };
   };
 
-  const signUp = async (email: string, password: string) => {
-    const redirectUrl = `${window.location.origin}/`;
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: redirectUrl }
-    });
-    return { error: error as Error | null };
+  const signUp = async (email: string, password: string, name: string) => {
+    const signUpData: SignUpData = { email, password, name };
+
+    const result = await functionalSignUp(signUpData)();
+
+    if (result._tag === 'Left') {
+      return { error: result.left };
+    }
+
+    // Update state after successful sign up
+    setAuthState(initializeAuthState());
+    return { error: null };
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    setRoles([]);
+    const result = await functionalSignOut()();
+
+    if (result._tag === 'Right') {
+      setAuthState(initializeAuthState());
+    }
   };
 
-  const isAdmin = roles.includes('admin');
-  const isEditor = roles.includes('editor') || isAdmin;
+  const contextValue: AuthContextType = {
+    user: authState.user,
+    isAuthenticated: authState.isAuthenticated,
+    isLoading: authState.isLoading,
+    isEditor: pipe(
+      authState.user,
+      O.map(user => user.role === 'editor' || user.role === 'admin'),
+      O.getOrElse(() => false)
+    ),
+    signIn,
+    signUp,
+    signOut
+  };
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      session,
-      loading,
-      roles,
-      isAdmin,
-      isEditor,
-      signIn,
-      signUp,
-      signOut
-    }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );

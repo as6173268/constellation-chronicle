@@ -1,0 +1,32 @@
+[
+  {
+    "id": "miedo-control",
+    "name": "Miedo → Control → Legitimidad",
+    "chapters": [1, 5, 12, 23, 34, 45],
+    "color": "hsl(38, 92%, 50%)"
+  },
+  {
+    "id": "culpa-obediencia",
+    "name": "Culpa → Obediencia → Repetición",
+    "chapters": [2, 8, 15, 27, 38, 49],
+    "color": "hsl(45, 85%, 55%)"
+  },
+  {
+    "id": "tecnologia-vigilancia",
+    "name": "Tecnología → Vigilancia → Fe en el sistema",
+    "chapters": [3, 11, 19, 29, 41, 50],
+    "color": "hsl(30, 80%, 50%)"
+  },
+  {
+    "id": "fatiga-delegacion",
+    "name": "Fatiga moral → Delegación → Alienación",
+    "chapters": [4, 14, 22, 31, 43, 51],
+    "color": "hsl(35, 75%, 45%)"
+  },
+  {
+    "id": "conciencia-rebelion",
+    "name": "Conciencia → Rebelión → Silencio",
+    "chapters": [6, 16, 24, 33, 44, 52],
+    "color": "hsl(40, 90%, 55%)"
+  }
+]

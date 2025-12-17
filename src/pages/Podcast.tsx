@@ -1,15 +1,39 @@
 import { Navigation } from "@/components/Navigation";
 import { EpisodeCard } from "@/components/EpisodeCard";
-
-import { episodes } from "@/data/episodes";
 import { EpisodeMarkdown } from "@/components/EpisodeMarkdown";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import lagrangeMap from "@/data/lagrange/lagrange_map.json";
+import { getEpisodes, getChapters } from "@/services/podcastService";
+import { cn } from "@/utils/utils";
 
 export default function Podcast() {
+  const navigate = useNavigate();
+  const [selectedEje, setSelectedEje] = useState<string | null>(null);
+  const [selectedTension, setSelectedTension] = useState<string | null>(null);
+  const [selectedCapitulo, setSelectedCapitulo] = useState<number | null>(null);
+
+  const episodes = getEpisodes();
+  const chapters = getChapters();
+
   // Lógica para enlazar dinámicamente el audio
   // Usar directamente el archivo real
   const audioFileName = "Silenciar_la_conciencia_por_miedo_a_la_exclusión001.m4a";
   const audioUrl = `${import.meta.env.BASE_URL}episodes/${audioFileName}`;
+
+  // Filter episodes based on selections
+  const filteredEpisodes = episodes.filter(episode => {
+    const episodeId = `E${episode.id}`;
+    const associatedQuestions = lagrangeMap.preguntas.filter(q => q.episodios.includes(episodeId));
+
+    if (selectedEje && !associatedQuestions.some(q => q.eje === selectedEje)) return false;
+    if (selectedTension && !associatedQuestions.some(q => q.tension === selectedTension)) return false;
+    if (selectedCapitulo) {
+      const chapter = chapters.find(c => c.id === selectedCapitulo);
+      if (!chapter || chapter.episodeId !== episode.id) return false;
+    }
+    return true;
+  });
 
   return (
     <div className="min-h-screen">
@@ -46,10 +70,100 @@ export default function Podcast() {
             </div>
           </div>
 
+          {/* Filters */}
+          <div className="mb-8">
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-sm font-medium mr-2">Eje:</span>
+              <button
+                onClick={() => setSelectedEje(null)}
+                className={cn(
+                  "px-3 py-1 rounded-full text-xs transition-all border",
+                  !selectedEje
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+                )}
+              >
+                Todos
+              </button>
+              {lagrangeMap.ejes.map((eje) => (
+                <button
+                  key={eje.id}
+                  onClick={() => setSelectedEje(eje.id)}
+                  className={cn(
+                    "px-3 py-1 rounded-full text-xs transition-all border",
+                    selectedEje === eje.id
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+                  )}
+                >
+                  {eje.nombre}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-sm font-medium mr-2">Tensión:</span>
+              <button
+                onClick={() => setSelectedTension(null)}
+                className={cn(
+                  "px-3 py-1 rounded-full text-xs transition-all border",
+                  !selectedTension
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+                )}
+              >
+                Todas
+              </button>
+              {["alta", "media", "baja"].map((tension) => (
+                <button
+                  key={tension}
+                  onClick={() => setSelectedTension(tension)}
+                  className={cn(
+                    "px-3 py-1 rounded-full text-xs transition-all border",
+                    selectedTension === tension
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+                  )}
+                >
+                  {tension.charAt(0).toUpperCase() + tension.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <span className="text-sm font-medium mr-2">Capítulo:</span>
+              <button
+                onClick={() => setSelectedCapitulo(null)}
+                className={cn(
+                  "px-3 py-1 rounded-full text-xs transition-all border",
+                  !selectedCapitulo
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+                )}
+              >
+                Todos
+              </button>
+              {chapters.map((chapter) => (
+                <button
+                  key={chapter.id}
+                  onClick={() => setSelectedCapitulo(chapter.id)}
+                  className={cn(
+                    "px-3 py-1 rounded-full text-xs transition-all border",
+                    selectedCapitulo === chapter.id
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-transparent text-muted-foreground border-border hover:border-primary/50"
+                  )}
+                >
+                  {chapter.id.toString().padStart(2, "0")}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Episodes Grid */}
           <div className="grid gap-4 md:grid-cols-2">
-            {episodes.map((episode) => (
-              <EpisodeCard key={episode.id} episode={episode} />
+            {filteredEpisodes.map((episode) => (
+              <EpisodeCard key={episode.id} episode={episode} onClick={() => navigate(`/podcast/${episode.id}`)} />
             ))}
           </div>
 

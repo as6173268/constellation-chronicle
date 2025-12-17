@@ -1,0 +1,128 @@
+[
+  {
+    "id": "Q01",
+    "eje": "miedo",
+    "nivel": "individual",
+    "tension": "psicologica",
+    "texto": "¿Qué parte de tu miedo es realmente tuyo y qué parte ha sido cultivada por el entorno?"
+  },
+  {
+    "id": "Q02",
+    "eje": "control",
+    "nivel": "institucional",
+    "tension": "politica",
+    "texto": "¿Cómo se justifica el control como libertad cuando elimina opciones sin declararlas?"
+  },
+  {
+    "id": "Q03",
+    "eje": "salud_mental",
+    "nivel": "sistemico",
+    "tension": "etica",
+    "texto": "¿Cuándo la salud mental deja de ser cuidado y se convierte en mecanismo de ajuste social?"
+  },
+  {
+    "id": "Q04",
+    "eje": "legitimidad",
+    "nivel": "individual",
+    "tension": "simbolica",
+    "texto": "¿Qué narrativas legitiman el poder sin necesidad de evidencia?"
+  },
+  {
+    "id": "Q05",
+    "eje": "responsabilidad",
+    "nivel": "institucional",
+    "tension": "politica",
+    "texto": "¿Quién carga con la responsabilidad cuando todos delegan?"
+  },
+  {
+    "id": "Q06",
+    "eje": "miedo",
+    "nivel": "sistemico",
+    "tension": "etica",
+    "texto": "¿Qué miedos colectivos se disfrazan de consensos inevitables?"
+  },
+  {
+    "id": "Q07",
+    "eje": "control",
+    "nivel": "individual",
+    "tension": "psicologica",
+    "texto": "¿Cómo internalizas el control hasta que lo confundes con autonomía?"
+  },
+  {
+    "id": "Q08",
+    "eje": "salud_mental",
+    "nivel": "institucional",
+    "tension": "simbolica",
+    "texto": "¿Qué síntomas se convierten en diagnósticos cuando cuestionan el orden establecido?"
+  },
+  {
+    "id": "Q09",
+    "eje": "legitimidad",
+    "nivel": "sistemico",
+    "tension": "politica",
+    "texto": "¿Cómo sobreviven las instituciones a su propia ilegitimidad demostrada?"
+  },
+  {
+    "id": "Q10",
+    "eje": "responsabilidad",
+    "nivel": "individual",
+    "tension": "etica",
+    "texto": "¿Qué culpas heredadas sigues pagando sin haberlas cometido?"
+  },
+  {
+    "id": "Q11",
+    "eje": "miedo",
+    "nivel": "institucional",
+    "tension": "simbolica",
+    "texto": "¿Qué símbolos de seguridad ocultan mecanismos de vigilancia?"
+  },
+  {
+    "id": "Q12",
+    "eje": "control",
+    "nivel": "sistemico",
+    "tension": "psicologica",
+    "texto": "¿Cómo se diseña el entorno para que la obediencia parezca elección natural?"
+  },
+  {
+    "id": "Q13",
+    "eje": "salud_mental",
+    "nivel": "individual",
+    "tension": "politica",
+    "texto": "¿Qué lucidez se etiqueta como enfermedad para mantener el statu quo?"
+  },
+  {
+    "id": "Q14",
+    "eje": "legitimidad",
+    "nivel": "institucional",
+    "tension": "etica",
+    "texto": "¿Qué principios éticos se invocan para justificar desigualdades estructurales?"
+  },
+  {
+    "id": "Q15",
+    "eje": "responsabilidad",
+    "nivel": "sistemico",
+    "tension": "simbolica",
+    "texto": "¿Cómo se diluye la culpa colectiva hasta desaparecer en lo impersonal?"
+  },
+  {
+    "id": "Q16",
+    "eje": "salud_mental",
+    "nivel": "institucional",
+    "tension": "simbolica",
+    "texto": "¿Cómo el sistema convierte la lucidez en locura para mantener el control?"
+  },
+  {
+    "id": "Q17",
+    "eje": "salud_mental",
+    "nivel": "institucional",
+    "tension": "simbolica",
+    "texto": "¿Qué imagen de mí me devuelve el diagnóstico que en realidad describe al sistema?"
+  },
+  {
+    "id": "Q18",
+    "eje": "salud_mental",
+    "nivel": "institucional",
+    "tension": "simbolica",
+    "texto": "¿Por qué mis percepciones válidas son invalidadas como síntomas?"
+  }
+]

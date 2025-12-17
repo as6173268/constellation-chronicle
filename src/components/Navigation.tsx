@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { useAuth } from "@/hooks/useAuth";
 
 const navItems = [
   { path: "/", label: "Inicio" },
   { path: "/podcast", label: "Podcast" },
-  { path: "/sistema-lagrange", label: "Sistema Lagrange" },
+  { path: "/mapa-lagrange", label: "Mapa Lagrange" },
   { path: "/capitulos", label: "Capítulos" },
   { path: "/laboratorio", label: "Laboratorio" },
 ];

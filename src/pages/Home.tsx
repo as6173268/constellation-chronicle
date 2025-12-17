@@ -4,7 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { EpisodeCard } from "@/components/EpisodeCard";
 import { Button } from "@/components/ui/button";
-import { getLatestEpisodes } from "@/data/episodes";
+import { getLatestEpisodes } from "@/services/podcastService";
 
 const latestEpisodes = getLatestEpisodes(3);
 

@@ -1,0 +1,183 @@
+{
+  "ejes": [
+    {
+      "id": "miedo",
+      "label": "Miedo",
+      "descripcion": "El miedo como motor de obediencia y erosión interior."
+    },
+    {
+      "id": "control",
+      "label": "Control",
+      "descripcion": "El control como domesticación anticipada."
+    },
+    {
+      "id": "salud_mental",
+      "label": "Salud Mental",
+      "descripcion": "La salud mental como corrección social."
+    },
+    {
+      "id": "legitimidad",
+      "label": "Legitimidad",
+      "descripcion": "La legitimidad como narrativa cohesionadora."
+    },
+    {
+      "id": "responsabilidad",
+      "label": "Responsabilidad",
+      "descripcion": "La responsabilidad como dilución colectiva."
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "Q01",
+      "eje": "miedo",
+      "nivel": "individual",
+      "tension": "psicologica",
+      "relaciones": ["Q06", "Q11", "Q07"],
+      "episodios": ["E01"]
+    },
+    {
+      "id": "Q02",
+      "eje": "control",
+      "nivel": "institucional",
+      "tension": "politica",
+      "relaciones": ["Q07", "Q12", "Q01"],
+      "episodios": ["E02"]
+    },
+    {
+      "id": "Q03",
+      "eje": "salud_mental",
+      "nivel": "sistemico",
+      "tension": "etica",
+      "relaciones": ["Q08", "Q13", "Q04"],
+      "episodios": ["E03"]
+    },
+    {
+      "id": "Q04",
+      "eje": "legitimidad",
+      "nivel": "individual",
+      "tension": "simbolica",
+      "relaciones": ["Q09", "Q14", "Q03"],
+      "episodios": ["E04"]
+    },
+    {
+      "id": "Q05",
+      "eje": "responsabilidad",
+      "nivel": "institucional",
+      "tension": "politica",
+      "relaciones": ["Q10", "Q15", "Q02"],
+      "episodios": ["E05"]
+    },
+    {
+      "id": "Q06",
+      "eje": "miedo",
+      "nivel": "sistemico",
+      "tension": "etica",
+      "relaciones": ["Q01", "Q11", "Q12"],
+      "episodios": ["E06"]
+    },
+    {
+      "id": "Q07",
+      "eje": "control",
+      "nivel": "individual",
+      "tension": "psicologica",
+      "relaciones": ["Q02", "Q12", "Q01"],
+      "episodios": ["E07"]
+    },
+    {
+      "id": "Q08",
+      "eje": "salud_mental",
+      "nivel": "institucional",
+      "tension": "simbolica",
+      "relaciones": ["Q03", "Q13", "Q09"],
+      "episodios": ["E08"]
+    },
+    {
+      "id": "Q09",
+      "eje": "legitimidad",
+      "nivel": "sistemico",
+      "tension": "politica",
+      "relaciones": ["Q04", "Q14", "Q08"],
+      "episodios": ["E09"]
+    },
+    {
+      "id": "Q10",
+      "eje": "responsabilidad",
+      "nivel": "individual",
+      "tension": "etica",
+      "relaciones": ["Q05", "Q15", "Q06"],
+      "episodios": ["E10"]
+    },
+    {
+      "id": "Q11",
+      "eje": "miedo",
+      "nivel": "institucional",
+      "tension": "simbolica",
+      "relaciones": ["Q01", "Q06", "Q07"],
+      "episodios": ["E11"]
+    },
+    {
+      "id": "Q12",
+      "eje": "control",
+      "nivel": "sistemico",
+      "tension": "psicologica",
+      "relaciones": ["Q02", "Q07", "Q06"],
+      "episodios": ["E12"]
+    },
+    {
+      "id": "Q13",
+      "eje": "salud_mental",
+      "nivel": "individual",
+      "tension": "politica",
+      "relaciones": ["Q03", "Q08", "Q14"],
+      "episodios": ["E13"]
+    },
+    {
+      "id": "Q14",
+      "eje": "legitimidad",
+      "nivel": "institucional",
+      "tension": "etica",
+      "relaciones": ["Q04", "Q09", "Q13"],
+      "episodios": ["E14"]
+    },
+    {
+      "id": "Q15",
+      "eje": "responsabilidad",
+      "nivel": "sistemico",
+      "tension": "simbolica",
+      "relaciones": ["Q05", "Q10", "Q11"],
+      "episodios": ["E15"]
+    }
+  ],
+  "relaciones": [
+    { "origen": "Q01", "destino": "Q06", "tipo": "refuerza" },
+    { "origen": "Q01", "destino": "Q11", "tipo": "refuerza" },
+    { "origen": "Q01", "destino": "Q07", "tipo": "desplaza" },
+    { "origen": "Q02", "destino": "Q07", "tipo": "refuerza" },
+    { "origen": "Q02", "destino": "Q12", "tipo": "refuerza" },
+    { "origen": "Q02", "destino": "Q01", "tipo": "contradice" },
+    { "origen": "Q03", "destino": "Q08", "tipo": "refuerza" },
+    { "origen": "Q03", "destino": "Q13", "tipo": "refuerza" },
+    { "origen": "Q03", "destino": "Q04", "tipo": "desplaza" },
+    { "origen": "Q04", "destino": "Q09", "tipo": "refuerza" },
+    { "origen": "Q04", "destino": "Q14", "tipo": "refuerza" },
+    { "origen": "Q04", "destino": "Q03", "tipo": "contradice" },
+    { "origen": "Q05", "destino": "Q10", "tipo": "refuerza" },
+    { "origen": "Q05", "destino": "Q15", "tipo": "refuerza" },
+    { "origen": "Q05", "destino": "Q02", "tipo": "desplaza" },
+    { "origen": "Q06", "destino": "Q11", "tipo": "refuerza" },
+    { "origen": "Q06", "destino": "Q12", "tipo": "desplaza" },
+    { "origen": "Q07", "destino": "Q12", "tipo": "refuerza" },
+    { "origen": "Q07", "destino": "Q01", "tipo": "contradice" },
+    { "origen": "Q08", "destino": "Q13", "tipo": "refuerza" },
+    { "origen": "Q08", "destino": "Q09", "tipo": "desplaza" },
+    { "origen": "Q09", "destino": "Q14", "tipo": "refuerza" },
+    { "origen": "Q09", "destino": "Q08", "tipo": "contradice" },
+    { "origen": "Q10", "destino": "Q15", "tipo": "refuerza" },
+    { "origen": "Q10", "destino": "Q06", "tipo": "desplaza" },
+    { "origen": "Q11", "destino": "Q07", "tipo": "desplaza" },
+    { "origen": "Q12", "destino": "Q06", "tipo": "contradice" },
+    { "origen": "Q13", "destino": "Q14", "tipo": "desplaza" },
+    { "origen": "Q14", "destino": "Q13", "tipo": "contradice" },
+    { "origen": "Q15", "destino": "Q11", "tipo": "desplaza" }
+  ]
+}

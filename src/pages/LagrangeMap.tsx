@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { LagrangeMap } from "@/components/LagrangeMap";
 import { useLagrangeData } from "@/hooks/useLagrangeData";
 
-export default function SistemaLagrange() {
+export default function LagrangeMap() {
   const { axes, nodes, isLoading } = useLagrangeData();
 
   return (
@@ -14,7 +14,7 @@ export default function SistemaLagrange() {
           {/* Header */}
           <div className="max-w-3xl mb-12">
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Sistema <span className="text-gradient">Lagrange</span>
+              Mapa <span className="text-gradient">Lagrange</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
               Un mapa interactivo de las {nodes.length || 52} espinas narrativas. Cada nodo representa un punto

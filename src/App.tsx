@@ -4,11 +4,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
 import Podcast from "./pages/Podcast";
-import SistemaLagrange from "./pages/SistemaLagrange";
-import Capitulos from "./pages/Capitulos";
-import Laboratorio from "./pages/Laboratorio";
+import Episode from "./pages/Episode";
+import LagrangeMap from "./pages/LagrangeMap";
+import Chapters from "./pages/Chapters";
+import ChapterDetail from "./pages/ChapterDetail";
+import Laboratory from "./pages/Laboratory";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -26,9 +28,11 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/podcast" element={<Podcast />} />
-            <Route path="/sistema-lagrange" element={<SistemaLagrange />} />
-            <Route path="/capitulos" element={<Capitulos />} />
-            <Route path="/laboratorio" element={<Laboratorio />} />
+            <Route path="/podcast/:slug" element={<Episode />} />
+            <Route path="/mapa-lagrange" element={<LagrangeMap />} />
+            <Route path="/capitulos" element={<Chapters />} />
+            <Route path="/capitulos/:slug" element={<ChapterDetail />} />
+            <Route path="/laboratorio" element={<Laboratory />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

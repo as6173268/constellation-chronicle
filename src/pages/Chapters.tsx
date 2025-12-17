@@ -1,11 +1,15 @@
 import { Navigation } from "@/components/Navigation";
 import { ChapterCard } from "@/components/ChapterCard";
-import { chapters, lagrangeAxes } from "@/data/chapters";
+import { getChapters } from "@/services/podcastService";
+import { getAxes } from "@/services/mapService";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 
 export default function Capitulos() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const chapters = getChapters();
+  const lagrangeAxes = getAxes();
 
   const filteredChapters = activeFilter
     ? chapters.filter((c) => c.axis === activeFilter)

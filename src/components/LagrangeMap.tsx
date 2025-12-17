@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLagrangeData, type LagrangeNode } from "@/hooks/useLagrangeData";
 
 export function LagrangeMap() {
+  const navigate = useNavigate();
   const { axes, nodes, connections, isLoading, error } = useLagrangeData();
   const [activeAxis, setActiveAxis] = useState<string | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -124,6 +126,7 @@ export function LagrangeMap() {
                 className="cursor-pointer transition-all duration-300"
                 onMouseEnter={() => setHoveredNode(node.id)}
                 onMouseLeave={() => setHoveredNode(null)}
+                onClick={() => node.episodios.length > 0 && navigate(`/podcast/${node.episodios[0].slice(1)}`)}
                 style={{
                   opacity: isActive ? 1 : 0.3,
                   transform: isHovered ? "scale(1.2)" : "scale(1)",

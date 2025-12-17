@@ -1,0 +1,69 @@
+[
+  {
+    "id": 1,
+    "slug": "el-despertar-del-miedo",
+    "title": "El Despertar del Miedo",
+    "summary": "En el principio fue el temblor. No el trueno, sino el silencio que lo precede. Aquí exploramos cómo el miedo primordial se convierte en el arquitecto invisible de nuestras primeras decisiones, moldeando la consciencia antes de que sepamos que existe.",
+    "dialogue": "—¿Y si el miedo no es un enemigo, Sócrates?\n—Entonces, amigo mío, quizás sea un maestro disfrazado de sombra.",
+    "lagrangeTag": "L1-MIEDO",
+    "axis": "miedo-control",
+    "episodeId": 1
+  },
+  {
+    "id": 2,
+    "slug": "la-trampa-de-la-razon",
+    "title": "La Trampa de la Razón",
+    "summary": "La lógica como prisión dorada. Cuando la mente construye laberintos perfectos que nos alejan de la verdad simple. El precio de racionalizar cada latido del corazón hasta convertirlo en ecuación.",
+    "dialogue": "—Pero si todo puede explicarse, ¿qué queda por sentir?\n—La pregunta misma, que ninguna respuesta puede abrazar.",
+    "lagrangeTag": "L2-RAZON",
+    "axis": "culpa-obediencia",
+    "episodeId": 2
+  },
+  {
+    "id": 3,
+    "slug": "la-comedia-del-control",
+    "title": "La Comedia del Control",
+    "summary": "Reímos para no llorar ante la ilusión del dominio. El ser humano construye imperios de arena convencido de que son montañas. La tecnología como extensión de esta tragicomedia universal.",
+    "dialogue": "—Controlamos el fuego, Sócrates.\n—Y el fuego, a su vez, controla nuestros sueños de grandeza.",
+    "lagrangeTag": "L3-CONTROL",
+    "axis": "tecnologia-vigilancia",
+    "episodeId": 3
+  },
+  {
+    "id": 4,
+    "slug": "el-peso-de-la-culpa",
+    "title": "El Peso de la Culpa",
+    "summary": "Heredamos culpas que no cometimos. La culpa como moneda de cambio en el mercado de las relaciones humanas. El peso invisible que cargamos desde que aprendemos la palabra 'debería'.",
+    "lagrangeTag": "L4-CULPA",
+    "axis": "fatiga-delegacion",
+    "episodeId": 4
+  },
+  {
+    "id": 5,
+    "slug": "la-mascara-del-heroe",
+    "title": "La Máscara del Héroe",
+    "summary": "Todos llevamos máscaras, pero la del héroe es la más pesada. La construcción del yo heroico como defensa ante la vulnerabilidad. El precio de ser fuerte cuando el alma pide rendición.",
+    "lagrangeTag": "L5-HEROE",
+    "axis": "miedo-control",
+    "episodeId": 5
+  },
+  {
+    "id": 6,
+    "slug": "el-eco-del-silencio",
+    "title": "El Eco del Silencio",
+    "summary": "En el silencio habitan todas las palabras no dichas. La conciencia como espejo que refleja lo que preferimos ignorar. El momento en que decidimos callar y el peso que permanece.",
+    "lagrangeTag": "L6-SILENCIO",
+    "axis": "conciencia-rebelion",
+    "episodeId": 6
+  },
+  {
+    "id": 52,
+    "slug": "la-cicuta-de-los-inocentes",
+    "title": "La Cicuta de los Inocentes",
+    "summary": "El círculo se cierra donde comenzó. La inocencia como la última rebeldía posible. Beber el veneno de la verdad sabiendo que libera más de lo que destruye. El final que es principio.",
+    "dialogue": "—¿Valió la pena el viaje, Sócrates?\n—El viaje era el destino, amigo. Siempre lo fue.",
+    "lagrangeTag": "L52-CICUTA",
+    "axis": "conciencia-rebelion",
+    "episodeId": 52
+  }
+]
