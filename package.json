@@ -8,12 +8,10 @@
     "dev": "vite",
     "build": "npm run sync-episodes && vite build",
     "build:dev": "vite build --mode development",
-    "build:prod": "cross-env VITE_GOOGLE_API_KEY=$VITE_GOOGLE_API_KEY npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
     "sync-episodes": "node sync-episodes.cjs",
-    "deploy": "npm install --global gh-pages && npm run build:prod && gh-pages -d dist",
-    "deploy:local": "npm install --global gh-pages && VITE_GOOGLE_API_KEY=$(cat .env.local | grep VITE_GOOGLE_API_KEY | cut -d '=' -f2) npm run build && gh-pages -d dist"
+    "deploy": "npm install --global gh-pages && npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -76,7 +74,6 @@
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.11.0",
     "autoprefixer": "^10.4.21",
-    "cross-env": "^10.1.0",
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

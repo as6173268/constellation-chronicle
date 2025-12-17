@@ -6,10 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Podcast from "./pages/Podcast";
-import EpisodeDetail from "./pages/EpisodeDetail";
 import SistemaLagrange from "./pages/SistemaLagrange";
 import Capitulos from "./pages/Capitulos";
-import ChapterDetail from "./pages/ChapterDetail";
 import Laboratorio from "./pages/Laboratorio";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
@@ -28,10 +26,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/podcast" element={<Podcast />} />
-            <Route path="/podcast/:id" element={<EpisodeDetail />} />
             <Route path="/sistema-lagrange" element={<SistemaLagrange />} />
             <Route path="/capitulos" element={<Capitulos />} />
-            <Route path="/capitulos/:slug" element={<ChapterDetail />} />
             <Route path="/laboratorio" element={<Laboratorio />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />

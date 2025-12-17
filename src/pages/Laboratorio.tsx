@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import AgentPanel from "@/components/AgentPanel";
 import { Brain, Database, Workflow, Sparkles, FileJson, Terminal } from "lucide-react";
 
 const tools = [
@@ -44,7 +43,7 @@ const tools = [
 const statusColors = {
   active: "bg-green-500/20 text-green-400 border-green-500/30",
   building: "bg-primary/20 text-primary border-primary/30",
-  planned: "bg-destructive/10 text-destructive border-destructive/30",
+  planned: "bg-muted text-muted-foreground border-border",
 };
 
 const statusLabels = {
@@ -53,119 +52,60 @@ const statusLabels = {
   planned: "Planificado",
 };
 
-
-// --- BLOQUE LABORATORIO DE ANÁLISIS CRÍTICO ---
-import { useState } from "react";
-import { useLaboratorioIA } from "../hooks/useLaboratorioIA";
-import lagrangeMap from "../data/lagrange_map.json";
-const niveles = ["individual", "institucional", "sistémico"];
-const tensiones = ["ética", "política", "psicológica", "simbólica"];
-
 export default function Laboratorio() {
-  // --- Estado para el laboratorio ---
-  const [texto, setTexto] = useState("");
-  const [ejes, setEjes] = useState<string[]>([]);
-  const [nivel, setNivel] = useState(niveles[0]);
-  const [tension, setTension] = useState(tensiones[0]);
-  const [preguntaId, setPreguntaId] = useState("");
-  const { analizar, output, loading, error } = useLaboratorioIA();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    analizar({ texto, ejes, nivel: nivel as any, tension: tension as any, preguntaId });
-  };
-
   return (
     <div className="min-h-screen">
       <Navigation />
+      
       <main className="pt-24 pb-20">
         <div className="container mx-auto px-4">
-          {/* --- Laboratorio de Análisis Crítico --- */}
-          <section className="max-w-2xl mx-auto p-6 space-y-6 mb-16 border border-destructive/30 rounded-lg bg-destructive/5">
-            <h2 className="text-2xl font-bold mb-2 text-destructive">Laboratorio de Análisis Crítico</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Selector de marco */}
-              <div>
-                <label className="font-semibold text-destructive">Ejes conceptuales:</label>
-                <div className="flex flex-wrap gap-2 mt-1">
-                  {lagrangeMap.ejes.map((e: any) => (
-                    <label key={e.id} className="flex items-center gap-1 text-sm">
-                      <input
-                        type="checkbox"
-                        value={e.id}
-                        checked={ejes.includes(e.id)}
-                        onChange={ev => setEjes(ev.target.checked ? [...ejes, e.id] : ejes.filter(x => x !== e.id))}
-                      />
-                      {e.label}
-                    </label>
-                  ))}
+          {/* Header */}
+          <div className="max-w-3xl mb-12">
+            <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">
+              Laboratorio
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              El taller donde se construye el Sistema Lagrange. Herramientas de IA, 
+              datasets estructurados y pipelines de automatización para dar vida al universo narrativo.
+            </p>
+          </div>
+
+          {/* Tools Grid */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-16">
+            {tools.map((tool) => (
+              <div
+                key={tool.name}
+                className="bg-card border border-border rounded-lg p-6 hover:border-primary/30 transition-colors"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center">
+                    <tool.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <span
+                    className={`px-2 py-1 rounded text-xs border ${statusColors[tool.status as keyof typeof statusColors]}`}
+                  >
+                    {statusLabels[tool.status as keyof typeof statusLabels]}
+                  </span>
                 </div>
+                <h3 className="font-display text-lg font-semibold mb-2">
+                  {tool.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {tool.description}
+                </p>
               </div>
-              <div className="flex gap-4">
-                <div>
-                  <label className="font-semibold text-destructive">Nivel:</label>
-                  <select value={nivel} onChange={e => setNivel(e.target.value)} className="ml-2 border-destructive/50 bg-destructive/5">
-                    {niveles.map(n => <option key={n}>{n}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="font-semibold text-destructive">Tensión:</label>
-                  <select value={tension} onChange={e => setTension(e.target.value)} className="ml-2 border-destructive/50 bg-destructive/5">
-                    {tensiones.map(t => <option key={t}>{t}</option>)}
-                  </select>
-                </div>
-              </div>
-              {/* Área de entrada */}
-              <div>
-                <label className="font-semibold text-destructive">Texto libre:</label>
-                <textarea
-                  className="w-full border border-destructive/50 rounded p-3 mt-1 bg-destructive/5 focus:bg-destructive/10 focus:border-destructive transition-colors"
-                  rows={3}
-                  value={texto}
-                  onChange={e => setTexto(e.target.value)}
-                  placeholder="Introduce texto, pregunta o fragmento..."
-                />
-              </div>
-              <div>
-                <label className="font-semibold text-destructive">Pregunta socrática:</label>
-                <select value={preguntaId} onChange={e => setPreguntaId(e.target.value)} className="ml-2 border-destructive/50 bg-destructive/5">
-                  <option value="">(Ninguna)</option>
-                  {lagrangeMap.preguntas.map((p: any) => (
-                    <option key={p.id} value={p.id}>{p.id} - {p.eje}</option>
-                  ))}
-                </select>
-              </div>
-              <button type="submit" className="bg-destructive text-destructive-foreground px-4 py-2 rounded hover:bg-destructive/90 transition-colors font-semibold" disabled={loading}>
-                {loading ? "Analizando..." : "Analizar"}
-              </button>
-            </form>
-            {/* Salida estructurada */}
-            {error && <div className="text-destructive border border-destructive/50 rounded p-3 bg-destructive/10">{error}</div>}
-            {output && (
-              <div className="border border-destructive/50 rounded p-4 bg-destructive/5 space-y-3">
-                <div className="border-l-4 border-destructive pl-3 py-1">
-                  <span className="font-semibold text-destructive">Narrativa:</span>
-                  <p className="text-sm mt-1 italic">{output.narrativa}</p>
-                </div>
-                <div><span className="font-semibold">Supuesto implícito detectado:</span> {output.supuesto}</div>
-                <div><span className="font-semibold">Contradicción principal:</span> {output.contradiccion}</div>
-                <div><span className="font-semibold">Eje activado:</span> {output.eje}</div>
-                <div><span className="font-semibold">Tensión dominante:</span> {output.tension}</div>
-                <div><span className="font-semibold">Pregunta que el sistema evita:</span> {output.preguntaEvita}</div>
-              </div>
-            )}
-          </section>
-          {/* ...existing code... */}
+            ))}
+          </div>
 
           {/* Workflow Section */}
-          <section className="max-w-4xl mx-auto mb-16">
-            <h2 className="font-display text-2xl font-semibold mb-8 text-destructive">
+          <section className="max-w-4xl mx-auto">
+            <h2 className="font-display text-2xl font-semibold mb-8">
               Flujo de Producción
             </h2>
             
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-destructive/30" />
+              <div className="absolute left-6 top-0 bottom-0 w-px bg-border" />
               
               <div className="space-y-8">
                 {[
@@ -196,16 +136,16 @@ export default function Laboratorio() {
                   },
                 ].map((item) => (
                   <div key={item.step} className="relative pl-16">
-                    <div className="absolute left-0 w-12 h-12 rounded-full bg-destructive/10 border border-destructive/50 flex items-center justify-center">
-                      <span className="font-display text-lg font-bold text-destructive">
+                    <div className="absolute left-0 w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center">
+                      <span className="font-display text-lg font-bold text-primary">
                         {item.step}
                       </span>
                     </div>
-                    <div className="bg-destructive/5 border border-destructive/30 rounded-lg p-5">
-                      <h3 className="font-display font-semibold mb-2 text-destructive">
+                    <div className="bg-card border border-border rounded-lg p-5">
+                      <h3 className="font-display font-semibold mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-destructive/80">
+                      <p className="text-sm text-muted-foreground">
                         {item.description}
                       </p>
                     </div>
@@ -213,19 +153,6 @@ export default function Laboratorio() {
                 ))}
               </div>
             </div>
-          </section>
-
-          {/* Agent Panel Section */}
-          <section className="max-w-4xl mx-auto">
-            <h2 className="font-display text-2xl font-semibold mb-6 text-destructive">
-              Agente de Fricción Intelectual
-            </h2>
-            <AgentPanel 
-              context={{
-                corpus: "El Sistema Lagrange es una red de 52 puntos narrativos interconectados que exploran la tensión entre miedo, control, conciencia y rebelión silenciosa.",
-                angle: "legitimidad institucional"
-              }}
-            />
           </section>
         </div>
       </main>

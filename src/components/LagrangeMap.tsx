@@ -1,25 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useLagrangeData, type LagrangeNode } from "@/hooks/useLagrangeData";
-import { chapters } from "@/data/chapters";
 
 export function LagrangeMap() {
   const { axes, nodes, connections, isLoading, error } = useLagrangeData();
   const [activeAxis, setActiveAxis] = useState<string | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   const getNodeById = (id: string) => nodes.find((n) => n.id === id);
-
-  const handleNodeClick = (node: LagrangeNode) => {
-    // Find corresponding chapter
-    const chapter = chapters.find((c) => c.episodeId === node.episodio);
-    if (chapter) {
-      navigate(`/capitulos/${chapter.slug}`);
-    } else {
-      navigate(`/podcast/${node.episodio}`);
-    }
-  };
 
   if (isLoading) {
     return (
@@ -57,7 +44,6 @@ export function LagrangeMap() {
               }`}
               onMouseEnter={() => setActiveAxis(axis.id)}
               onMouseLeave={() => setActiveAxis(null)}
-              onClick={() => setActiveAxis(activeAxis === axis.id ? null : axis.id)}
             >
               <span
                 className="w-3 h-3 rounded-full shrink-0"
@@ -67,13 +53,6 @@ export function LagrangeMap() {
             </button>
           ))}
         </div>
-      </div>
-
-      {/* Instruction */}
-      <div className="absolute top-4 right-4 z-10 bg-card/90 backdrop-blur-sm border border-border rounded-lg px-3 py-2">
-        <p className="text-xs text-muted-foreground">
-          Haz clic en un nodo para ver el episodio
-        </p>
       </div>
 
       {/* SVG Map */}
@@ -145,7 +124,6 @@ export function LagrangeMap() {
                 className="cursor-pointer transition-all duration-300"
                 onMouseEnter={() => setHoveredNode(node.id)}
                 onMouseLeave={() => setHoveredNode(null)}
-                onClick={() => handleNodeClick(node)}
                 style={{
                   opacity: isActive ? 1 : 0.3,
                   transform: isHovered ? "scale(1.2)" : "scale(1)",
@@ -234,9 +212,6 @@ export function LagrangeMap() {
             </div>
             <p className="text-xs text-muted-foreground mt-2 capitalize">
               Ángulo: {node.angulo}
-            </p>
-            <p className="text-xs text-primary mt-2">
-              Clic para ver →
             </p>
           </div>
         );

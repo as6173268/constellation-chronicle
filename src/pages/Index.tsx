@@ -66,12 +66,12 @@ export default function Index() {
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center gap-2 mb-6">
               <Headphones className="h-5 w-5 text-primary" />
-              <h2 className="font-display text-lg font-semibold">Capítulo Destacado</h2>
+              <h2 className="font-display text-lg font-semibold">Última emisión</h2>
             </div>
             <AudioPlayer 
-              title="Silenciar la conciencia por miedo a la exclusión"
-              duration="10:12"
-              episodeNumber={1}
+              title="El Eco del Silencio"
+              duration="33:40"
+              episodeNumber={6}
             />
           </div>
         </div>
