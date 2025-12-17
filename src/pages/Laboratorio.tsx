@@ -1,4 +1,49 @@
 import { Navigation } from "@/components/Navigation";
+import { useState } from "react";
+import { lagrangeEpisodesSchema } from "../data/lagrangeEpisodesSchema";
+import { generarEpisodioGemini } from "../hooks/useLaboratorioIA";
+// Componente para mostrar y generar episodios con Gemini 2.0
+function EpisodioGemini() {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [output, setOutput] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+
+  const handleGenerar = async (id: number) => {
+    setSelectedId(id);
+    setLoading(true);
+    setOutput("");
+    const result = await generarEpisodioGemini(id);
+    setOutput(result || "No se pudo generar el episodio.");
+    setLoading(false);
+  };
+
+  return (
+    <div className="mb-16">
+      <h2 className="font-display text-2xl font-semibold mb-4">Generar Episodio con Gemini 2.0</h2>
+      <div className="grid gap-4 md:grid-cols-2">
+        {lagrangeEpisodesSchema.episodes.slice(0, 5).map((ep: any) => (
+          <div key={ep.id} className="border rounded-lg p-4 bg-card">
+            <div className="font-bold mb-1">{ep.title}</div>
+            <div className="text-sm text-muted-foreground mb-2">{ep.theme}</div>
+            <button
+              className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+              onClick={() => handleGenerar(ep.id)}
+              disabled={loading && selectedId === ep.id}
+            >
+              {loading && selectedId === ep.id ? "Generando..." : "Generar con Gemini 2.0"}
+            </button>
+          </div>
+        ))}
+      </div>
+      {output && (
+        <div className="mt-8 p-4 border rounded-lg bg-muted">
+          <h3 className="font-semibold mb-2">Episodio generado:</h3>
+          <pre className="whitespace-pre-wrap text-sm">{output}</pre>
+        </div>
+      )}
+    </div>
+  );
+}
 import { Brain, Database, Workflow, Sparkles, FileJson, Terminal } from "lucide-react";
 
 const tools = [
@@ -69,6 +114,9 @@ export default function Laboratorio() {
               datasets estructurados y pipelines de automatización para dar vida al universo narrativo.
             </p>
           </div>
+
+          {/* Episodios Gemini 2.0 */}
+          <EpisodioGemini />
 
           {/* Tools Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-16">

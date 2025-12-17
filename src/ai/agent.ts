@@ -5,7 +5,7 @@ import { SYSTEM_PROMPT } from "./systemPrompt";
 import { buildAgentPromptWithPilares, buildPilarAnalysisPrompt } from "./prompts";
 import { pilares } from "@/data/pilares";
 
-const GOOGLE_API_KEY = "AIzaSyATvjH8T6OT5vwWKncAMVp1NTHntVUpBZE";
+const GOOGLE_API_KEY = "AIzaSyCE2y7nxv8KJkJqDNULlj4gKALpPxtBQR0";
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
 
 /**

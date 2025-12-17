@@ -1,3 +1,30 @@
+import { lagrangeEpisodesSchema } from "../data/lagrangeEpisodesSchema";
+/**
+ * Genera un episodio completo usando Gemini 2.0 a partir del esquema JSON y el índice de episodio.
+ */
+export async function generarEpisodioGemini(episodeId: number): Promise<string | null> {
+  const GOOGLE_API_KEY = "AIzaSyCE2y7nxv8KJkJqDNULlj4gKALpPxtBQR0";
+  const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
+  const episode = lagrangeEpisodesSchema.episodes.find((ep: any) => ep.id === episodeId);
+  if (!episode) return null;
+  const prompt = `Genera el guion completo del episodio del podcast 'Lagrange en Llamas' siguiendo esta estructura:\n${JSON.stringify(episode, null, 2)}\nUtiliza el tono: ${lagrangeEpisodesSchema.tone} y la plantilla de actos: ${JSON.stringify(lagrangeEpisodesSchema.structure_template)}`;
+  const response = await fetch(`${GEMINI_API_URL}?key=${GOOGLE_API_KEY}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.8,
+        topK: 40,
+        topP: 0.95,
+        maxOutputTokens: 2048,
+      }
+    })
+  });
+  if (!response.ok) return null;
+  const data = await response.json();
+  return data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
+}
 import { useState } from "react";
 import { buildLaboratorioPrompt, LaboratorioInput, LaboratorioOutput } from "../lib/laboratorioIA";
 
@@ -17,7 +44,7 @@ export function useLaboratorioIA() {
     setOutput(null);
     try {
       const prompt = buildLaboratorioPrompt(input);
-      const GOOGLE_API_KEY = "AIzaSyATvjH8T6OT5vwWKncAMVp1NTHntVUpBZE";
+      const GOOGLE_API_KEY = "AIzaSyCE2y7nxv8KJkJqDNULlj4gKALpPxtBQR0";
       if (!GOOGLE_API_KEY) {
         throw new Error("API key no configurada. Define VITE_GOOGLE_API_KEY en .env.local");
       }

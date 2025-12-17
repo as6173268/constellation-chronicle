@@ -6,7 +6,7 @@ Write-Host "Iniciando deploy del Sistema Lagrange..."
 
 # 1. Escribir la API key en .env.local si no existe
 $envPath = ".env.local"
-$apiKey = "VITE_GOOGLE_API_KEY=AIzaSyATvjH8T6OT5vwWKncAMVp1NTHntVUpBZE"
+$apiKey = "VITE_GOOGLE_API_KEY=AIzaSyCE2y7nxv8KJkJqDNULlj4gKALpPxtBQR0"
 if (!(Test-Path $envPath)) {
     Set-Content -Path $envPath -Value $apiKey
     Write-Host ".env.local creado con API key."
