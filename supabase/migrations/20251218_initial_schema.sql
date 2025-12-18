@@ -30,6 +30,7 @@ create table if not exists public.episodes (
   description text,
   content text,
   duration text,
+  audio_url text,
   published_at timestamp with time zone,
   created_by uuid references auth.users(id),
   created_at timestamp with time zone default timezone('utc'::text, now()),

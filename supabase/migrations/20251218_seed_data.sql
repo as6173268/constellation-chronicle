@@ -47,10 +47,10 @@ insert into public.episodes (id, title, slug, description, duration, published_a
   (12, 'Episodio 12: Conciencia-Rebelión - Media', 'episodio-12-conciencia-media', '¿La rebelión es un acto consciente o una respuesta involuntaria?', '27:00', now() - interval '7 days'),
   (13, 'Episodio 13: Miedo - Profunda', 'episodio-13-miedo-profunda-3', '¿Qué significa ser libre en un sistema que define la libertad?', '34:00', now() - interval '6 days'),
   (14, 'Episodio 14: Tecnología-Vigilancia - Profunda', 'episodio-14-tecnologia-profunda-2', '¿Cómo distinguir entre mi deseo y el deseo que me fue implantado?', '30:00', now() - interval '5 days'),
-  (15, 'Episodio 15: Fatiga-Delegación - Media', 'episodio-15-fatiga-media-2', '¿Es posible la empatía en una estructura de escasez competitiva?', '26:00', now() - interval '4 days'),
-  (16, 'Episodio 16: Conciencia-Rebelión - Profunda', 'episodio-16-conciencia-profunda', '¿Qué pasa cuando la voz interna de alerta se vuelve más fuerte que la del sistema?', '35:00', now() - interval '3 days'),
-  (17, 'Episodio 17: Culpa-Obediencia - Profunda', 'episodio-17-culpa-profunda-3', '¿Por qué reproducimos el patrón que nos daña?', '28:00', now() - interval '2 days'),
-  (18, 'Episodio 18: Tecnología-Vigilancia - Profunda', 'episodio-18-tecnologia-profunda-3', '¿Quién decide quién es "enfermo" y quién "normal" en un sistema enfermo?', '36:00', now() - interval '1 day')
+  (15, 'Episodio 15: Fatiga-Delegación - Media', 'episodio-15-fatiga-media-2', '¿Es posible la empatía en una estructura de escasez competitiva?', '26:00', now() - interval '4 days', NULL),
+  (16, 'Episodio 16: Conciencia-Rebelión - Profunda', 'episodio-16-conciencia-profunda', '¿Qué pasa cuando la voz interna de alerta se vuelve más fuerte que la del sistema?', '35:00', now() - interval '3 days', NULL),
+  (17, 'Episodio 17: Culpa-Obediencia - Profunda', 'episodio-17-culpa-profunda-3', '¿Por qué reproducimos el patrón que nos daña?', '28:00', now() - interval '2 days', NULL),
+  (18, 'Episodio 18: Tecnología-Vigilancia - Profunda', 'episodio-18-tecnologia-profunda-3', '¿Quién decide quién es "enfermo" y quién "normal" en un sistema enfermo?', '36:00', now() - interval '1 day', NULL)
 on conflict (id) do nothing;
 
 -- Insert episode-question relations
