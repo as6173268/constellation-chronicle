@@ -56,8 +56,7 @@ export default function SistemaLagrange() {
                     >
                       <div className="flex items-center gap-3 mb-4">
                         <div
-                          className="w-4 h-4 rounded-full node-glow"
-                          style={{ backgroundColor: axis.color }}
+                          className="w-4 h-4 rounded-full node-glow bg-yellow-400"
                         />
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           {axisNodes.length} nodos

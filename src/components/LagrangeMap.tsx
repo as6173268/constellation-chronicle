@@ -46,8 +46,7 @@ export function LagrangeMap() {
               onMouseLeave={() => setActiveAxis(null)}
             >
               <span
-                className="w-3 h-3 rounded-full shrink-0"
-                style={{ backgroundColor: axis.color }}
+                className="w-3 h-3 rounded-full shrink-0 bg-yellow-400"
               />
               <span className="truncate">{axis.label}</span>
             </button>
@@ -58,8 +57,7 @@ export function LagrangeMap() {
       {/* SVG Map */}
       <svg
         viewBox="0 0 1200 800"
-        className="w-full h-full"
-        style={{ filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))" }}
+        className="w-full h-full drop-shadow-lg"
       >
         {/* Background glow */}
         <defs>
@@ -124,11 +122,7 @@ export function LagrangeMap() {
                 className="cursor-pointer transition-all duration-300"
                 onMouseEnter={() => setHoveredNode(node.id)}
                 onMouseLeave={() => setHoveredNode(null)}
-                style={{
-                  opacity: isActive ? 1 : 0.3,
-                  transform: isHovered ? "scale(1.2)" : "scale(1)",
-                  transformOrigin: `${node.position_x}px ${node.position_y}px`,
-                }}
+                // ...existing code...
               >
                 {/* Glow circle */}
                 {isHovered && (
@@ -183,15 +177,10 @@ export function LagrangeMap() {
         return (
           <div
             className="absolute z-20 bg-card border border-primary/40 rounded-lg p-4 shadow-lg max-w-xs pointer-events-none animate-scale-in"
-            style={{
-              left: `${(node.position_x / 12) + 2}%`,
-              top: `${(node.position_y / 8)}%`,
-            }}
           >
             <div className="flex items-center gap-2 mb-2">
               <span
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: axis?.color }}
+                className="w-2 h-2 rounded-full bg-yellow-400"
               />
               <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 {axis?.label}

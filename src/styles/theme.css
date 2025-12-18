@@ -1,0 +1,17 @@
+/* Utilidad para color dinámico de fondo */
+.bg-dynamic {
+	background-color: var(--dynamic-bg, transparent) !important;
+}
+/* Utilidad para color dinámico de borde */
+.border-dynamic {
+	border-color: var(--dynamic-border, transparent) !important;
+}
+/* Utilidad para color dinámico de animación */
+.animation-delay-dynamic {
+	animation-delay: var(--dynamic-delay, 0ms) !important;
+}
+/* Utilidades de delay para animaciones fade-in */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+/* Tema general para Sistema Lagrange */

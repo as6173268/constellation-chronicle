@@ -53,8 +53,7 @@ export default function Capitulos() {
                 )}
               >
                 <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ backgroundColor: axis.color }}
+                  className="w-2 h-2 rounded-full bg-yellow-400"
                 />
                 {axis.name.split("→")[0].trim()}
               </button>
@@ -67,7 +66,6 @@ export default function Capitulos() {
               <div
                 key={chapter.id}
                 className="animate-fade-in"
-                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <ChapterCard chapter={chapter} />
               </div>
