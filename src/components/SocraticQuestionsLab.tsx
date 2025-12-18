@@ -10,7 +10,7 @@ export function SocraticQuestionsLab() {
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
-    const userMsg = { role: 'user', content: input };
+    const userMsg: { role: 'user' | 'assistant'; content: string } = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setLoading(true);
