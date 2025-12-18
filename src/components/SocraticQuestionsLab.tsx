@@ -15,8 +15,15 @@ export function SocraticQuestionsLab() {
     setInput("");
     setLoading(true);
     try {
-      // El prompt rector y la lógica de backend siguen activos
-      const resp = await llmClient.analizar(input);
+      // Construir LaboratorioInput básico
+      const laboratorioInput = {
+        texto: input,
+        ejes: ["ética"], // Puedes ajustar esto o hacerlo seleccionable
+        nivel: "individual" as "individual", // Tipo exacto
+        tension: "ética"
+      };
+      const prompt = buildLaboratorioPrompt(laboratorioInput);
+      const resp = await llmClient.analizar(prompt);
       setMessages((prev) => [...prev, { role: 'assistant', content: resp }]);
     } catch (err) {
       setMessages((prev) => [...prev, { role: 'assistant', content: 'Error al consultar Gemini' }]);
